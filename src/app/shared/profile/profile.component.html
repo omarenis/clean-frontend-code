@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="back d-flex justify-content-end ">
+    <a [routerLink]='profile === undefined || profile.is_super_doctor === true ? "users" : "children" '>رجوع<i
+      class="bi bi-arrow-return-left"></i></a>
+  </div>
+  <div class="main-body card position-relative d-flex flex-column">
+    <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">الملف الشخصي</h3>
+    <div class="row gutters-sm">
+      <div class="col-md-12">
+        <div class="mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 text-justify">
+                <h6 class="mb-0">الإسم</h6>
+              </div>
+              <div class="col-md-6 text-secondary">
+                {{data.name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row ">
+              <div class="col-sm-4 text-justify">
+                <h6 class="mb-0">اللقب</h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{data.profile.family_name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4 text-justify">
+                <h6 class="mb-0 ">رقم بطاقة التعريف الوطنية</h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{data.login_number}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4 text-justify">
+                <h6 class="mb-0">البريد اﻹلكتروني</h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{data.email}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4 text-justify">
+                <h6 class="mb-0">رقم الهاتف</h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{data.telephone}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="edit col-sm-12">
+                <button routerLink="/editprofileadmin"> تعديل الملف الشخصي</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

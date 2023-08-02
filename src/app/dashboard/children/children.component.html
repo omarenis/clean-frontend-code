@@ -1,0 +1,41 @@
+<div class="continue">
+  <div class="d-flex ">
+    <div class="listchild container-fluid d-flex justify-content-center ">
+      <img class="espacekids img-fluid" src="assets/img/espace kids final.png">
+      <h3>قائمة <span style="color: #57CFDE;">الأطفال  </span></h3>
+    </div>
+  </div>
+  <div class="navandlistchild  row ">
+    <div class="navcard card ">
+      <a routerLink="/childliste" class="nav-link"><i class="bi bi-list-nested"></i>قائمة الاطفال</a>
+      <a routerLink="/meeting" class="nav-link"><i class="bi bi-calendar-event"></i> جدول المواعيد</a>
+    </div>
+    <div class="cardchildliste card card-body ">
+      <nav>
+        <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-home-tab" (click)="getPatients('tdah')" data-bs-toggle="tab"
+                  data-bs-target="#nav-tdah" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+            إختبارات اضطراب تشتت الانتباه و فرط الحركة
+          </button>
+          <button class="nav-link" id="nav-profile-tab" (click)="getPatients('autisme')" data-bs-toggle="tab"
+                  data-bs-target="#nav-autism" type="button" role="tab" aria-controls="nav-profile"
+                  aria-selected="false">إختبارات التوحد
+          </button>
+        </div>
+      </nav>
+      <div class=" mt-2">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-tdah" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="addchild d-flex justify-content-end mb-2">
+              <button routerLink="/searchchild" class=" btnaddchild d-flex justify-content-center py-1">اضافة طفل <i
+                class="bi bi-person-plus"></i></button>
+            </div>
+            <div class="detailschild ">
+              <app-children-table [children]="this.data"></app-children-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

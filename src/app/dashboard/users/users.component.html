@@ -1,0 +1,93 @@
+<div class="continue">
+  <div *ngIf="typeUsersToDisplay === 'super_doctor'" class="d-flex ">
+    <div class="listchild container-fluid d-flex justify-content-center ">
+      <img class="espacekids img-fluid" src="assets/img/espace kids final.png">
+      <h3>قائمة <span style="color: #57CFDE;">الأطباء الأوائل </span></h3>
+    </div>
+  </div>
+  <div *ngIf="typeUsersToDisplay === 'school'" class="d-flex ">
+    <div class="listchild container-fluid d-flex justify-content-center ">
+      <img class="espacekids img-fluid" src="assets/img/espace kids final.png">
+      <h3>قائمة <span style="color: #57CFDE;">الروضات  </span></h3>
+    </div>
+  </div>
+  <div *ngIf="typeUsersToDisplay === 'other_users'" class="d-flex ">
+    <div class="listchild container-fluid d-flex justify-content-center ">
+      <img class="espacekids img-fluid" src="assets/img/espace kids final.png">
+      <h3>قائمة <span style="color: #57CFDE;">مستعملي المنصة  </span></h3>
+    </div>
+  </div>
+  <div class="navandlistchild  row ">
+    <div class="navcard card ">
+      <a (click)="displaysuperdoctor()" class="nav-link"><i class="bi bi-person-lines-fill"></i>قائمة الأطباء</a>
+      <a (click)="displaykindergarten()" class="nav-link"><i class="bi bi-list"></i> قائمة الروضات</a>
+      <a (click)="displayUser()" class="nav-link"><i class="bi bi-people-fill"></i>مستعملي المنصة</a>
+    </div>
+
+
+    <div class="cardchildliste card card-body ">
+
+
+      <div *ngIf="typeUsersToDisplay === 'super_doctor' || typeUsersToDisplay === 'school'"
+           class="addchild d-flex justify-content-end">
+        <button data-bs-target="#formAddUser" data-bs-toggle="modal"
+                class=" btnaddchild d-flex justify-content-center py-1">{{isSuperDoctor == true ? " اضافة طبيب أول" : "اضافة روضة "}}
+          <i class="bi bi-person-plus"></i></button>
+      </div>
+      <div *ngIf="typeUsersToDisplay !== 'school'" class="form-floating w-25 d-flex justify-content-end">
+        <select (change)="change_data($event)"  [(ngModel)]="typeDoctorToDisplay" aria-label="Floating label select example" class="form-select"
+                id="floatingSelect" name="type_user">
+          <option selected value="" hidden></option>
+          <ng-container *ngIf="typeUsersToDisplay === 'doctor'">
+            <option value="superdoctor">طبيب أول</option>
+            <option value="doctor">طبيب</option>
+          </ng-container>
+          <ng-container *ngIf="typeUsersToDisplay === 'other'">
+            <option value="teacher">مربي</option>
+            <option value="parent">ولي</option>
+          </ng-container>
+        </select>
+        <label for="floatingSelect">بحث بإستعمال نوع المستعمل</label>
+      </div>
+
+      <div class="detailschild mt-4">
+        <div *ngIf="!spinner" class="d-flex justify-content-center align-items-center">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div *ngFor="let superdoctor of result" class="detailchild card d-flex flex-row flex-nowrap">
+          <div class="profilephoto col-1">
+            <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="">
+          </div>
+
+          <div class="col-3">
+            <p class="head">رقم الدخول</p>
+            <p class="underhead">{{superdoctor.login_number}}</p>
+          </div>
+          <div class="col-3">
+            <p class="head">الإسم و اللقب</p>
+            <p class="underhead">{{superdoctor.name + ' ' + superdoctor.profile?.family_name }}</p>
+          </div>
+          <div class="col-4">
+            <p class="head">نوع المستخدم</p>
+            <p class="underhead">{{superdoctor.type_user}}</p>
+          </div>
+          <div [routerLink]='["/detailssuperdoctor",superdoctor.id]' class="= col-1 d-flex justify-content-end"><i
+            style="  font-size: 25px;    align-items: center;
+      display: flex;" class="bi bi-person-fill-gear"></i></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

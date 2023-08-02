@@ -1,0 +1,101 @@
+.footerrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+img
+{
+  aspect-ratio: 2.39;
+}
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+
+a, a:hover {
+  text-decoration: none !important;
+}
+
+.footer-48201 {
+  padding: 3rem 0;
+  background-color: #000;
+  color: #777;
+}
+
+.footer-48201 .footer-site-logo {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.footer-48201 .nav-links li {
+  margin-bottom: 5px;
+}
+
+.footer-48201 .nav-links li a {
+  color: gray;
+}
+
+.footer-48201 .nav-links li a:hover {
+
+  color: #fff;
+}
+
+
+.footer-48201 .socielmedia a {
+  color: gray;
+}
+
+.footer-48201 .socielmedia a:hover {
+  color: #fff;
+}
+
+.footer-48201 .bi {
+
+  margin-left: 15px;
+}
+
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footerrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+.signbtn {
+  text-decoration: none;
+  border-radius: 50px;
+  border: 2px solid #43A7DF;
+  background-color: #43A7DF;
+  color: white;
+  transition: background 0.5s;
+  font-size: 0.9rem;
+}
+
+.signbtn:hover {
+  border: 2px solid #43A7DF;
+  background-color: #fff;
+  color: #43A7DF;
+}
