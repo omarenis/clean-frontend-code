@@ -59,15 +59,12 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
     }
     else if (this.typeUsersToDisplay === 'parent')
     {
-
+      filter["type_user"] = 'parent';
     }
+    this.options.params = filter;
     this.service.list(this.actionUrl, this.options).subscribe(res => {
       this.result = res
       this.numberItems = this.result.length;
-      this.spinner = true
-      this.isAnyperson = true
-      this.isSuperDoctor = false
-      this.isSchool = false
     });
     if (params !== null && params !== undefined) {
       this.options.params = params;
