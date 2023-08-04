@@ -1,1 +1,144 @@
-<p>signup works!</p>
+
+<section  [formGroup]="signupFormControl"
+ class=" h-custom gradient-custom-2 d-flex justify-content-center "  >
+  <div class="container py-3">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+
+              <h3 class="fw-normal mb-4 mt-4 text-center" style="color: #588ADB;">انشاء حساب</h3>
+                <div class="d-flex flex-wrap justify-content-around px-5 text-justify">
+
+                    <div class="col-md-5 mb-4 pb-2 " >
+                      <div class=" ">
+                        <label class="form-label text-justify" for="form3Examplev2">الإسم</label>
+                        <input type="text" formControlName="name" id="name" class="form-control form-control-lg" />
+                      </div>
+                    </div>
+                    <div class="col-md-5 mb-4 pb-2">
+                      <div class=" ">
+                        <label class="form-label text-justify" for="form3Examplev3">اللقب</label>
+                        <input type="text" formControlName="family_name" id="family_name" class="form-control form-control-lg" />
+                      </div>
+                    </div>
+
+                  <div class="col-md-5 mb-4 pb-2">
+                    <div class=" ">
+                      <label class="form-label" for="form3Examplev4">رقم بطاقة التعريف الوطنية</label>
+                      <input type="number" formControlName="login_number" id="login_number" class="form-control form-control-lg" onKeyPress="if(this.value.length==8) return false;"/>
+
+                    </div>
+                  </div>
+                  <div class="col-md-5 mb-4 pb-2">
+                    <div class=" ">
+                      <label class="form-label" for="form3Examplev4">رقم الهاتف</label>
+                      <input type="number"  class="form-control form-control-lg" formControlName="telephone" id="phone" onKeyPress="if(this.value.length==8) return false;"/>
+
+                    </div>
+                  </div>
+
+
+
+                    <div class="col-md-5 mb-4 pb-2">
+                      <div class=" ">
+                        <label class="form-label" for="form3Examplev4"> رقم هاتف إحتياطي</label>
+                        <input type="number"  class="form-control form-control-lg" formControlName="telephone2" id="telephone2" onKeyPress="if(this.value.length==8) return false;"/>
+
+                      </div>
+                    </div>
+                    <div class="col-md-5 mb-4 pb-2">
+                      <div class=" ">
+                        <label class="form-label" for="form3Examplev4"> إختر البلد</label>
+                        <select (click)="choicecountry()" [(ngModel)]="country" class="select form-select form-control-lg " formControlName="country" id="country" >
+                          <option  value="" hidden>البلد</option>
+                          <option value="tunisie"  style="min-height: 300px;" >تونس</option>
+                          <option  value="algerie"  style="min-height: 300px; " >الجزائر</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-5 mb-2 pb-4">
+                      <label class="form-label" for="form3Examplev4">إختر الولاية</label>
+                      <select [(ngModel)]="selectedOption" (click)="states()" class="select form-select form-control-lg " formControlName="state" id="state" >
+                        <option  value="" hidden>الولاية</option>
+                        <option  *ngFor="let state of state" [value]="state.governorate" style="min-height: 300px;">{{state.governorate}}</option>
+                      </select>
+                    </div>
+
+
+                    <div *ngIf="!nodelegation" class="col-md-5 mb-4 pb-2">
+                      <div class=" ">
+                        <label class="form-label" >المعتمدية</label>
+                        <select  (click)="delegation()" class="select form-select form-control-lg " formControlName="delegation" id="delegation">
+                          <option  *ngFor="let delegation of delegationoption"  style="min-height: 300px;">{{delegation.delegation}}</option>
+                        </select>
+                      </div>
+
+                    </div>
+                    <div class="col-md-5 mb-4 pb-2">
+
+                      <div class=" ">
+                        <label class="form-label" for="form3Examplev3">الترقيم البريدي</label>
+                        <input type="number"  formControlName="zip_code" id="zip_code" class="form-control form-control-lg" onKeyPress="if(this.value.length==4) return false;"/>
+
+                      </div>
+
+                    </div>
+
+
+
+                  <div class="col-md-5 mb-4 pb-2">
+                    <div class="  ">
+                      <label class="form-label" for="form3Examplev4"> كلمة السر </label>
+                      <div class="d-flex">
+                      <input type="password"  formControlName="password" id="password" class="form-control form-control-lg" #passwordField/>
+                      <button type="button" class="eye" (click)="togglePassword(passwordField)">
+                        <span class="icon-eye" *ngIf="!showPassword"></span>
+                        <span class="icon-eye-slash" *ngIf="showPassword"></span>
+                      </button>
+                    </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-5 mb-4 pb-2">
+                    <div class=" ">
+                      <label class="form-label" for="form3Examplev4" [ngStyle]="{'color': isColorRed ? 'black' : 'red'}">تأكيد كلمة السر </label>
+                      <div class="d-flex">
+                      <input type="password"  id="confirmPassword" formControlName="confirmPassword" class="form-control form-control-lg"#confirmpasswordField />
+                      <button type="button" class="eye" (click)="togglePassword(confirmpasswordField)">
+                        <span class="icon-eye" *ngIf="!showPassword"></span>
+                        <span class="icon-eye-slash" *ngIf="showPassword"></span>
+                      </button>
+                    </div>
+
+                    </div>
+
+                  </div>
+
+
+
+                <!--
+                    <div class="form-group mb-3">
+                      <label for="exampleFormControlFile1">اضافة صورة</label>
+                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input  " type="checkbox" value="" id="form2Example3c" />
+                    <label class="form-check-label text-black mr-3" for="form2Example3">
+                      أنا أقبل  <a href="#!" >الشروط والأحكام</a> الخاصة بالمنصة .
+                    </label>
+                  </div>
+[disabled]="signupFormControl.invalid"
+                -->
+              </div>
+                <div class="d-flex justify-content-center">
+                <button  [disabled]="signupFormControl.invalid"  type="submit" class=" btn-light my-4 " (click)="submit()" style="background-color: #43A7DF; color: white ;border: none; height: 40px;width: 130px;border-radius: 5px;">انشاء حساب</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+</section>

@@ -8,6 +8,9 @@ import { SignupComponent } from './signup/signup.component';
 import { TdhaQuestionsComponent } from './tdha-questions/tdha-questions.component';
 import { AutisticQuestionsComponent } from './autistic-questions/autistic-questions.component';
 import {SharedModule} from "../shared/shared.module";
+import { AboutUsPlatformComponent } from './about-us/about-us-platform/about-us-platform.component';
+import { AboutUsAutismeComponent } from './about-us/about-us-autisme/about-us-autisme.component';
+import { AboutUsTdahComponent } from './about-us/about-us-tdah/about-us-tdah.component';
 
 
 
@@ -19,7 +22,10 @@ import {SharedModule} from "../shared/shared.module";
     LoginComponent,
     SignupComponent,
     TdhaQuestionsComponent,
-    AutisticQuestionsComponent
+    AutisticQuestionsComponent,
+    AboutUsPlatformComponent,
+    AboutUsAutismeComponent,
+    AboutUsTdahComponent
   ],
   imports: [
     CommonModule,

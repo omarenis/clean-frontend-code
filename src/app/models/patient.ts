@@ -14,7 +14,7 @@ import { behaviortroubleteacher } from './teacher/behaviorTroubleTeacher';
 
 
 export interface Patient {
-  is_consulted?: boolean;
+  is_consulted: boolean | null;
     type_user?: string;
     name?: string;
     family_name?: string;
@@ -24,8 +24,8 @@ export interface Patient {
     supervise ?: Supervise;
     doctor_id ?: number;
     id?: string;
-    parent?: Person;
-    teacher?: Person;
+    parent ?: Person;
+    teacher ?: Person;
     behaviortroubleparent?: BehaviorTroubleParent;
     learningtroubleparent?: LearningTroubleParent;
     anxitytroubleparent?: AnxityTroubleParent;

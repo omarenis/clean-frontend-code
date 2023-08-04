@@ -1,0 +1,252 @@
+<div class="container">
+  <div class="back d-flex justify-content-end ">
+    <a routerLink="/doctorpatientlist">رجوع<i class="bi bi-arrow-return-left"></i></a>
+  </div>
+  <div class="main-body card">
+    <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">الملف</h3>
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="">
+          <div class="card-body">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 ">
+        <div class="mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 text-justify">
+                <h6 class="mb-0">الإسم</h6>
+              </div>
+              <div class="col-md-6 text-secondary">
+                {{patient.name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row ">
+              <div class="col-sm-4 text-justify">
+                <h6 class="mb-0">اللقب</h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{patient.family_name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4 text-justify">
+                <h6 class="mb-0 ">تاريخ الولادة</h6>
+              </div>
+              <div class="col-sm-3 text-secondary">
+                {{patient.birthdate}}
+              </div>
+            </div>
+            <hr>
+            <ng-container *ngIf="parent !== undefined">
+              <div class="row">
+                <div class="col-sm-4 text-justify">
+                  <h6 class="mb-0">الإسم واللقب الولي</h6>
+                </div>
+                <div class="col-sm-3 text-secondary">
+                  {{parent.name + ' ' + parent.profile?.family_name}}
+                </div>
+              </div>
+              <hr>
+
+
+              <div class="row">
+                <div class="col-sm-4 text-justify">
+                  <h6 class="mb-0">رقم الهاتف</h6>
+                </div>
+                <div class="col-sm-3 text-secondary">
+                  {{parent.telephone}}
+                </div>
+              </div>
+              <hr>
+            </ng-container>
+            <ng-container *ngIf="type_user === 'doctor'">
+              <p class="d-flex justify-content-center" style="color: #588ADB;">نتيجة الأولياء</p>
+              <div class="question d-flex flex-wrap justify-content-center">
+
+                <div class="card d-flex flex-column bd-highlight m-3">
+                  <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Anxiété
+                    : {{patient.AnxityTroubleParent.score}}</div>
+                  <div class="p-2 bd-highlight text-justify">
+                    <p> - يخاف من كل ما هو جديد (المواقف-اماكن-اناس-المدرسة)
+                      : {{patient.AnxityTroubleParent.afraid_new_things}} </p>
+                    <p> - محتشم(حشام) : {{patient.AnxityTroubleParent.shy}}</p>
+                    <p> - من المرض الموت الوحدة اكثر من غيره: {{patient.AnxityTroubleParent.worry_much}}</p>
+                    <p> - انهزامي و ينقاد من قبل الاخرين: {{patient.AnxityTroubleParent.being_crashed_manipulated}}</p>
+                  </div>
+                </div>
+                <div class="card d-flex flex-column bd-highlight m-3">
+                  <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Difficultés de
+                    comportement : {{patient.BehaviorTroubleParent.score}}</div>
+                  <div class="p-2 bd-highlight text-justify">
+                    <p> - لا يحترم من هو اكبر منه سنا( يتقبح في العباد اللي أكبر منو)
+                      : {{patient.BehaviorTroubleParent.insolent_with_grown_ups}} </p>
+                    <p> - يشعر بان الاخرين يريدون الاساءة اليه دفاعي
+                      : {{patient.BehaviorTroubleParent.feels_attacked_defensive}}</p>
+                    <p> - متلف مخرب(فسايدي) :  {{patient.BehaviorTroubleParent.destructive}}</p>
+                    <p> - ينكر اخطاءه و ينسبها لغيره : {{patient.BehaviorTroubleParent.deny_mistakes_blame_others}}</p>
+                    <p> - كثير الخصام و يورط نفسه في المشاجرات
+                      : {{patient.BehaviorTroubleParent.quarrelsome_get_involved_fight}}</p>
+                    <p> - يعنف و يشاكس زملاءه : {{patient.BehaviorTroubleParent.bully_intimidate_comrades}}</p>
+                    <p> - يتخاصم بكثرة : {{patient.BehaviorTroubleParent.constantly_fight}}</p>
+                    <p> - يبدو غير سعيد و مرتاح (حزين المظهر) : {{patient.BehaviorTroubleParent.unhappy}}</p>
+
+                  </div>
+                </div>
+                <div class="card d-flex flex-column bd-highlight m-3">
+                  <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">la forme abrégée
+                    : {{patient.FormAbrParent.score}}</div>
+                  <div class="p-2 bd-highlight text-justify">
+                    <p> - سريع الانفعال و الاستثارة : {{patient.FormAbrParent.excitable_impulsive}} </p>
+                    <p> - يبكي كثيرا و بسهولة : {{patient.FormAbrParent.cry_often_easily}}</p>
+                    <p> - كثير الحركة لا يستطيع ان يبقى ماكثا في مكانه :  {{patient.FormAbrParent.squirms}}</p>
+                    <p> - كثير الحركة يحتاج دوما الى القيام بشي ما
+                      : {{patient.FormAbrParent.restless_needs_do_something}}</p>
+                    <p> - متلف مخرب(فسايدي) :  {{patient.FormAbrParent.destructive}}</p>
+                    <p> - يجد صعوبة في اتمام ما شرع في القيام به
+                      : {{patient.FormAbrParent.trouble_finishing_things}}</p>
+                    <p> - يجد صعوبة في التركيز : {{patient.FormAbrParent.easily_being_distracted}}</p>
+                    <p> - له مزاج متقلب و بصفة متواصلة : {{patient.FormAbrParent.moody}}</p>
+                    <p> - عند القيام بمجهود يحس بسرعة بعدم القدرة على ذلك
+                      : {{patient.FormAbrParent.enability_finish_when_do_effort}}</p>
+                    <p> - يشوش يزعج الاطفال الاخرين : {{patient.FormAbrParent.disturb_other_children}}</p>
+
+                  </div>
+                </div>
+
+
+                <div class="card d-flex flex-column bd-highlight m-3">
+                  <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Impulsivité,
+                    hyperactivité : {{patient.HyperActivityTroubleParent.score}}</div>
+                  <div class="p-2 bd-highlight text-justify">
+                    <p> - سريع الانفعال و الاستثارة : {{patient.HyperActivityTroubleParent.excitable_impulsive}} </p>
+                    <p> - يريد ان يتحكم : {{patient.HyperActivityTroubleParent.want_dominate}}</p>
+                    <p> - كثير الحركة لا يستطيع ان يبقى ماكثا في مكانه
+                      :  {{patient.HyperActivityTroubleParent.squirms}}</p>
+                    <p> - كثير الحركة يحتاج دوما الى القيام بشي ما
+                      : {{patient.HyperActivityTroubleParent.restless_needs_do_something}}</p>
+                  </div>
+                </div>
+                <div class="card d-flex flex-column bd-highlight m-3">
+                  <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Difficultés
+                    d’apprentissage : {{patient.LearningTroubleParent.score}}</div>
+                  <div class="p-2 bd-highlight text-justify">
+                    <p> - يجد صعوبة في اكتساب المعلومات (التعلم)
+                      : {{patient.LearningTroubleParent.has_learning_difficulties}}</p>
+                    <p> - يجد صعوبة في اتمام ما شرع في القيام به
+                      : {{patient.LearningTroubleParent.trouble_finishing_things}}</p>
+                    <p> - يجد صعوبة في التركيز : {{patient.LearningTroubleParent.easily_being_distracted}}</p>
+                    <p> - عند القيام بمجهود يحس بسرعة بعدم القدرة على ذلك
+                      : {{patient.LearningTroubleParent.enability_finish_when_do_effort}}</p>
+                  </div>
+                </div>
+                <div class="card d-flex flex-column bd-highlight m-3">
+                  <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Somatisation
+                    : {{patient.SomatisationTroubleParent.score}}</div>
+                  <div class="p-2 bd-highlight text-justify">
+                    <p> - يشكو من الصداع : {{patient.SomatisationTroubleParent.headaches}}</p>
+                    <p> - يشكو من الام في المعدة : {{patient.SomatisationTroubleParent.upset_stomach}}</p>
+                    <p> - يشكو من آلام جسدية مختلفة : {{patient.SomatisationTroubleParent.physical_aches}}</p>
+                    <p> - يتقيأ يشكو من الغثيان : {{patient.SomatisationTroubleParent.vomiting_nausea}}</p>
+                  </div>
+                </div>
+              </div>
+              <p class="d-flex justify-content-center" style="color: #588ADB;">نتيجة المعلمين</p>
+            <div class="question d-flex flex-wrap justify justify-content-center">
+
+              <div class="card d-flex flex-column bd-highlight m-3">
+                <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Difficultés de
+                  comportement : {{patient.behaviortroubleteacher?.score}}</div>
+                <div class="p-2 bd-highlight text-justify">
+                  <p> - يميل الى الخبث وقح غير مهذب : {{patient.behaviortroubleteacher?.arrogant_impolite}}</p>
+                  <p> - تنتابه نوبات غضب و يقوم بتصرفات غير متوقعة
+                    : {{patient.behaviortroubleteacher?.angry_unexpected_behavior}}</p>
+                  <p> - له حساسية مفرطة للنقد : {{patient.behaviortroubleteacher?.sensitive_criticism}}</p>
+                  <p> - يعبس و يغضب بسهولة : {{patient.behaviortroubleteacher?.pout_sulk_easily}}</p>
+                  <p> - له مزاج متقلب و بصفة واضحة : {{patient.behaviortroubleteacher?.moody}}</p>
+                  <p> - يتشاجر بكثرة : {{patient.behaviortroubleteacher?.brawler}}</p>
+                  <p> - ينكر اخطاءه و يتهم غيره : {{patient.behaviortroubleteacher?.deny_mistakes_blame_others}}</p>
+                  <p> - يستعين بقلة بمعلمه- يطلب استعانة معلمه بقلة
+                    : {{patient.behaviortroubleteacher?.few_relations_school}}</p>
+
+                </div>
+              </div>
+              <div class="card d-flex flex-column bd-highlight m-3">
+                <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Impulsivité,
+                  hyperactivité : {{patient.hyperactivitytroubleteacher?.score}}</div>
+                <div class="p-2 bd-highlight text-justify">
+                  <p> - مضطرب (هائج) يستدير حول نفسه في اتجاهات مختلفة و هو جالس على مقعده
+                    : {{patient.hyperactivitytroubleteacher?.restless_squirms_chair}}</p>
+                  <p> - يصدر اصواتا في غير محلها و عندما لا يسمح الظرف بذلك
+                    : {{patient.hyperactivitytroubleteacher?.inappropriate_noises}}</p>
+                  <p> - يجب تلبية طلباته حالا : {{patient.hyperactivitytroubleteacher?.immediately_satisfied_needs}}</p>
+                  <p> - يزعج غيره من التلاميذ : {{patient.hyperactivitytroubleteacher?.annoy_students}}</p>
+                  <p> - مضطرب (هائج) يتحرك باستمرار : {{patient.hyperactivitytroubleteacher?.goes_left_right}}</p>
+                  <p> - يثور (يهيج) بسهولة مندفع : {{patient.hyperactivitytroubleteacher?.easily_turn_on_impulsive}}</p>
+                  <p> - يستدعي انتباه المدرس بصفة مفرطة
+                    : {{patient.hyperactivitytroubleteacher?.excessive_attention_from_teacher}}</p>
+
+                </div>
+              </div>
+
+
+              <div class="card d-flex flex-column bd-highlight m-3">
+                <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">Inattention,
+                  passivité : {{patient.inattentiontroubleteacher?.score}}</div>
+                <div class="p-2 bd-highlight text-justify">
+                  <p> - يبدو شارد الذهن : {{patient.inattentiontroubleteacher?.distracted}}</p>
+                  <p> - يبدو حالما,أحلام اليقظة : {{patient.inattentiontroubleteacher?.dreamer}}</p>
+                  <p> - ينقاد من قبل الآخرين : {{patient.inattentiontroubleteacher?.led_by_others}}</p>
+                  <p> - ليست له القدرة على تدريب الاخرين او قيادتهم
+                    : {{patient.inattentiontroubleteacher?.trouble_guiding_others}}</p>
+                  <p> - يجد صعوبة في اتمام ما شرع القيام فيه
+                    : {{patient.inattentiontroubleteacher?.trouble_finishing_things}}</p>
+                  <p> - صبياني غير ناضج على المستوى العاطفي يتصرف تصرفات من هو اصغر منه سنا
+                    : {{patient.inattentiontroubleteacher?.immature}}</p>
+                  <p> - يتوتر بسهولة عندما يجب عليه القيام بمجهود ما
+                    : {{patient.inattentiontroubleteacher?.upset_easily_make_effort}}</p>
+
+                </div>
+              </div>
+              <div class="card d-flex flex-column bd-highlight m-3">
+                <div class="p-2 bd-highlight text-center" style="color: #315a9c; font-size: large;">la forme abrégée
+                  : {{patient.formabrteacher?.score}}</div>
+                <div class="p-2 bd-highlight text-justify">
+                  <p> - مضطرب (هائج) يستدير حول نفسه في اتجاهات مختلفة و هو جالس على مقعده
+                    : {{patient.formabrteacher?.restless_squirms_chair}}</p>
+                  <p> - تنتابه نوبات غضب و يقوم بتصرفات غير متوقعة
+                    : {{patient.formabrteacher?.angry_unexpected_behavior}}</p>
+                  <p> - يبدو شارد الذهن : {{patient.formabrteacher?.distracted}}</p>
+                  <p> - يزعج غيره من التلاميذ : {{patient.formabrteacher?.annoy_students}}</p>
+                  <p> - يعبس و يغضب بسهولة : {{patient.formabrteacher?.pout_sulk_easily}}</p>
+                  <p> - له مزاج متقلب و بصفة واضحة : {{patient.formabrteacher?.moody}}</p>
+                  <p> - مضطرب (هائج) يتحرك باستمرار : {{patient.formabrteacher?.goes_left_right}}</p>
+                  <p> - يثور (يهيج) بسهولة مندفع : {{patient.formabrteacher?.easily_turn_on_impulsive}}</p>
+                  <p> - يجد صعوبة في اتمام ما شرع القيام فيه : {{patient.formabrteacher?.trouble_finishing_things}}</p>
+                  <p> - يتوتر بسهولة عندما يجب عليه القيام بمجهود ما
+                    : {{patient.formabrteacher?.upset_easily_make_effort}}</p>
+
+
+                </div>
+              </div>
+            </div>
+            </ng-container>
+
+
+
+            <div class="row">
+              <div class="edit col-sm-12">
+                <button *ngIf="patient.is_consulted === false" (click)="saveItem(patient)">حجز موعد</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
