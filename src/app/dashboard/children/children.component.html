@@ -31,7 +31,7 @@
                 class="bi bi-person-plus"></i></button>
             </div>
             <div class="detailschild ">
-              <app-children-table [children]="this.data"></app-children-table>
+              <app-children-table [children]="this.data" (patientOperationEvent)="operationEvent($event)" [type_user]="'superdoctor'" [type_patients]="'tdah'"></app-children-table>
             </div>
           </div>
         </div>

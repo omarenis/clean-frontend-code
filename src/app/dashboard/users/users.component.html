@@ -65,22 +65,22 @@
             <span class="sr-only">Loading...</span>
           </div>
         </div> -->
-        <div *ngFor="let superdoctor of result" class="detailchild card d-flex flex-row flex-nowrap">
+        <div *ngFor="let user of result" class="detailchild card d-flex flex-row flex-nowrap">
           <div class="profilephoto col-1">
             <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="">
           </div>
 
           <div class="col-3">
             <p class="head">رقم الدخول</p>
-            <p class="underhead">{{superdoctor.login_number}}</p>
+            <p class="underhead">{{user.login_number}}</p>
           </div>
           <div class="col-3">
             <p class="head">الإسم و اللقب</p>
-            <p class="underhead">{{superdoctor.name + ' ' + superdoctor.profile?.family_name }}</p>
+            <p class="underhead">{{user.name + ' ' + user.profile?.family_name }}</p>
           </div>
-          <div class="col-4">
+          <div class="col-4" *ngIf="type_user === 'admin'">
             <p class="head">نوع المستخدم</p>
-            <p class="underhead">{{superdoctor.type_user}}</p>
+            <p class="underhead">{{user.type_user}}</p>
           </div>
           <!-- <div [routerLink]='["/detailssuperdoctor",superdoctor.id]' class="= col-1 d-flex justify-content-end"><i
             style="  font-size: 25px;    align-items: center;

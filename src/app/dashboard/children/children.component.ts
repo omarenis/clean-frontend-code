@@ -1,3 +1,4 @@
+import { Operation } from './../../models/form';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Patient} from "../../models/patient";
 import {AbstractRestService} from "../../services/genericservice";
@@ -40,6 +41,11 @@ export class ChildrenComponent extends DynamicTableCrud<Patient> implements OnIn
       await this.getPatients('tdah');
       console.log(this.result);
     }
+  }
+
+  operationEvent(event: Operation)
+  {
+    console.log(event);
   }
 
   override async getData(): Promise<void> {

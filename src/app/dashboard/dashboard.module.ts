@@ -8,7 +8,14 @@ import { UserComponent } from './user/user.component';
 import {FormsModule} from "@angular/forms";
 import { ChildProfileAutismeComponent } from './child-profile-autisme/child-profile-autisme.component';
 import { ChildProfileTdahComponent } from './child-profile-tdah/child-profile-tdah.component';
+import { Route, RouterModule } from '@angular/router';
 
+
+const routes: Route[] = [
+  {
+    path: 'children', component: ChildrenComponent
+  }
+]
 
 
 @NgModule({
@@ -23,6 +30,7 @@ import { ChildProfileTdahComponent } from './child-profile-tdah/child-profile-td
   imports: [
     CommonModule,
     SharedModule.forRoot(),
+    RouterModule.forChild(routes),
     FormsModule
   ]
 })

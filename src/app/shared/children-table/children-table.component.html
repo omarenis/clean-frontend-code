@@ -35,7 +35,7 @@
         <i *ngIf="patient.saved==false"
            class="bi bi-person-exclamation text-danger" style=" font-size: 30px; cursor: pointer;"></i>
         <i *ngIf="patient.saved==true && patient.supervisor === undefined"
-           [routerLink]='["/childprofile" ,patient.id ]' class="bi bi-person-exclamation text-danger"
+           [routerLink]='["/childprofile" , patient.id ]' class="bi bi-person-exclamation text-danger"
            style=" font-size: 30px; cursor: pointer;"></i>
         <i *ngIf=" patient.supervisor !== null &&  patient.sick === true " class="bi bi-person-check text-success"
            style=" font-size: 30px; cursor: pointer;"></i>

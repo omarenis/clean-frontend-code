@@ -6,17 +6,18 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {RouterModule} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
 
-const routes: Route[] = [{
-  path: '', component: AppComponent, children: [
-    {
-      path: 'public', loadChildren: () => import('./public/public.module').then((module) => module.PublicModule)
-    },
-    {
-      path: 'dashboard',
-      loadChildren: () => import('./dashboard/dashboard.module').then((module) => module.DashboardModule)
-    }
-  ]
-}];
+const routes: Route[] = [
+  {
+    path: 'public', loadChildren: () => import('./public/public.module').then((module) => module.PublicModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then((module) => module.DashboardModule)
+  },
+  {
+    path: '', redirectTo: '/public', pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [

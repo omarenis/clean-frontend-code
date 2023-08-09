@@ -13,7 +13,14 @@ import { AboutUsPlatformComponent } from './about-us/about-us-platform/about-us-
 import { AboutUsAutismeComponent } from './about-us/about-us-autisme/about-us-autisme.component';
 import { AboutUsTdahComponent } from './about-us/about-us-tdah/about-us-tdah.component';
 
-
+const routes: Route[] = [
+  {
+    path: "", redirectTo: "index", pathMatch: "full"
+  },
+  {
+    path: 'index', component: AppComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -30,9 +37,8 @@ import { AboutUsTdahComponent } from './about-us/about-us-tdah/about-us-tdah.com
   ],
   imports: [
     CommonModule,
-    SharedModule.forRoot(),
-
-
+    RouterModule.forChild(routes),
+    SharedModule.forRoot()
   ]
 })
 export class PublicModule { }
