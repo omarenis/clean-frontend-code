@@ -4,9 +4,12 @@ import {Patient} from "../../models/patient";
 import {SecureStorageService} from "../../services/secure-storage.service";
 import {AbstractRestService} from "../../services/genericservice";
 import {ActivatedRoute, Router} from "@angular/router";
-import Option from "$GLOBAL$";
+ // import Option from "$GLOBAL$";
 
-
+export interface Option{
+  params: any,
+  headers: any,
+}
 
 @Component({
   selector: 'app-child-profile-autisme',

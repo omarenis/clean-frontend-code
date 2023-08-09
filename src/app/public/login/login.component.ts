@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { saveDataToLocalhost } from 'src/app/services/genericservice';
 import { LoginSignupService } from 'src/app/services/login-signup.service';
