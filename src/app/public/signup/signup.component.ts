@@ -1426,7 +1426,7 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
   delegationoption: any = [];
 
   constructor(protected override service: AbstractRestService<Person>, private loginSignUpService: LoginSignupService,
-              private router: Router, protected override secureStorageService: SecureStorageService, private toast: NgToastService) {
+              private router: Router, protected override secureStorageService: SecureStorageService) {
     super(service, `${environment.url}/api/persons/gov`, secureStorageService);
     this.selectedOption = '';
     this.country = '';
@@ -1462,7 +1462,7 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
 
     if (this.xpassword != this.xconfirmPassword) {
       this.error = "Passwords do not match.";
-      this.toast.error({detail: "خطأ في التسجيل", summary: 'كلمة المرور غير مطابقة', duration: 5000});
+    //  this.toast.error({detail: "خطأ في التسجيل", summary: 'كلمة المرور غير مطابقة', duration: 5000});
 
       this.isColorRed = false;
     } else {
@@ -1492,7 +1492,7 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
         }
       }).subscribe({
         next: async response => {
-          this.toast.success({detail: "تمت العملية بنجاح", summary: 'تم إنشاء الحساب بنجاح', duration: 5000});
+         // this.toast.success({detail: "تمت العملية بنجاح", summary: 'تم إنشاء الحساب بنجاح', duration: 5000});
           this.success = true
           this.msg = 'ajout'
           this.test = response
@@ -1503,7 +1503,7 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
           this.created = true
           this.errorsignup = err.error;
           if (this.created) {
-            this.toast.error({detail: "خطأ في التسجيل", summary: 'هذا الحساب مسجل بالفعل', duration: 5000});
+          //  this.toast.error({detail: "خطأ في التسجيل", summary: 'هذا الحساب مسجل بالفعل', duration: 5000});
           }
         }
       });

@@ -6,6 +6,8 @@ import {AbstractRestService} from "../../services/genericservice";
 import {ActivatedRoute, Router} from "@angular/router";
 import Option from "$GLOBAL$";
 
+
+
 @Component({
   selector: 'app-child-profile-autisme',
   templateUrl: './child-profile-autisme.component.html',
