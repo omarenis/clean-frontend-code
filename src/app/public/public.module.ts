@@ -9,6 +9,10 @@ import { TdhaQuestionsComponent } from './tdha-questions/tdha-questions.componen
 import { AutisticQuestionsComponent } from './autistic-questions/autistic-questions.component';
 import {SharedModule} from "../shared/shared.module";
 import { Route, RouterModule } from '@angular/router';
+import { AboutUsPlatformComponent } from './about-us/about-us-platform/about-us-platform.component';
+import { AboutUsAutismeComponent } from './about-us/about-us-autisme/about-us-autisme.component';
+import { AboutUsTdahComponent } from './about-us/about-us-tdah/about-us-tdah.component';
+
 
 
 @NgModule({
@@ -19,7 +23,10 @@ import { Route, RouterModule } from '@angular/router';
     LoginComponent,
     SignupComponent,
     TdhaQuestionsComponent,
-    AutisticQuestionsComponent
+    AutisticQuestionsComponent,
+    AboutUsPlatformComponent,
+    AboutUsAutismeComponent,
+    AboutUsTdahComponent
   ],
   imports: [
     CommonModule,

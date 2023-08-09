@@ -24,7 +24,6 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
               private httpClient: HttpClient, private router: Router) {
     super(service, `${environment.url}/api/persons`, secureStorageService);
     this.selectedOption = '';
-
   }
 
   async ngOnInit(): Promise<void> {

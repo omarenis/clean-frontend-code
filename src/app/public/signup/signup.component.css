@@ -1,0 +1,75 @@
+.form-control{
+  outline: none;
+}
+
+  .card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+  }
+  .card-registration .select-arrow {
+  top: 13px;
+  }
+
+  .icon-eye:before {
+    margin-left: 10px;
+    content: "\f06e";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    font-size: 1rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .icon-eye-slash:before {
+    margin-left: 10px;
+    content: "\f070";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    font-size: 1rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  .eye{
+    border: none;
+    background-color: white;
+    color: rgb(202, 202, 202);
+  }
+
+  input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+  @media (min-width: 992px) {
+  .card-registration-2 .bg-indigo {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  }
+  }
+  @media (max-width: 991px) {
+  .card-registration-2 .bg-indigo {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  }
+  }
+
+  @media only screen and (max-width: 767px) {
+    select {
+      width: 400px;
+  }
+
+  }
+  @media only screen and (max-width: 500px) {
+    select {
+      width: 340px;
+  }
+
+  }
+  @media only screen and (max-width: 420px) {
+    select {
+      width: 270px;
+  }
+
+  }
