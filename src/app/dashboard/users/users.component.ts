@@ -19,6 +19,7 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
   formGroup !: FormGroup;
   access !: string | null;
   typeDoctorToDisplay !: string;
+  selectedOption:string
   constructor(protected override service: AbstractRestService<Person>, protected override secureStorageService: SecureStorageService,
               private httpClient: HttpClient, private router: Router) {
     super(service, `${environment.url}/api/persons`, secureStorageService);
@@ -72,10 +73,10 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
     this.service.list(this.actionUrl, this.options).subscribe(res => {
       this.result = res;
       this.numberItems = this.result.length;
-      this.spinner = true
-      this.isAnyperson = true
-      this.isSuperDoctor = false
-      this.isSchool = false
+      // this.spinner = true
+      // this.isAnyperson = true
+      // this.isSuperDoctor = false
+      // this.isSchool = false
     })
 
   }
@@ -84,10 +85,10 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
     this.service.list(this.actionUrl, this.options).subscribe(res => {
       this.result = res.filter(person => person.profile?.is_super_doctor == true);
       this.numberItems = this.result.length;
-      this.spinner = true
-      this.isSuperDoctor = true
-      this.isSchool = false
-      this.isAnyperson = false
+      // this.spinner = true
+      // this.isSuperDoctor = true
+      // this.isSchool = false
+      // this.isAnyperson = false
     });
   }
 
@@ -96,10 +97,10 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
       next: (res: Person[]) => {
         this.result = res.filter((person: Person) => person.type_user === "school");
         this.numberItems = this.result.length;
-        this.spinner = true
-        this.isSchool = true
-        this.isAnyperson = false
-        this.isSuperDoctor = false
+        // this.spinner = true
+        // this.isSchool = true
+        // this.isAnyperson = false
+        // this.isSuperDoctor = false
       },
       error: () => {
 

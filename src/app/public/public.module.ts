@@ -8,7 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { TdhaQuestionsComponent } from './tdha-questions/tdha-questions.component';
 import { AutisticQuestionsComponent } from './autistic-questions/autistic-questions.component';
 import {SharedModule} from "../shared/shared.module";
-
+import { Route, RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -23,7 +23,9 @@ import {SharedModule} from "../shared/shared.module";
   ],
   imports: [
     CommonModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+
+
   ]
 })
 export class PublicModule { }

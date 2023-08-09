@@ -16,7 +16,7 @@ export class ProfileComponent {
   token !: string;
   userId !: number;
   data: any = {};
-  profile !: Profile;
+  profile !: any;
 
   constructor(private service: AbstractRestService<Person>, private secureStorageService: SecureStorageService, private router: Router) {
   }

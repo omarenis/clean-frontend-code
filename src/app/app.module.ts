@@ -23,9 +23,7 @@ const routes: Route[] = [{
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-}),
+    RouterModule.forRoot(routes),
     BrowserModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

@@ -17,7 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
     CommonModule,
     ReactiveFormsModule,
     NgOptimizedImage,
-    RouterLink
+    RouterLink,
+    RouterModule
   ],
   exports: [
     ConsultationTableComponent,

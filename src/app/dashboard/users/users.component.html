@@ -30,9 +30,9 @@
 
       <div *ngIf="typeUsersToDisplay === 'super_doctor' || typeUsersToDisplay === 'school'"
            class="addchild d-flex justify-content-end">
-        <button data-bs-target="#formAddUser" data-bs-toggle="modal"
+        <!-- <button data-bs-target="#formAddUser" data-bs-toggle="modal"
                 class=" btnaddchild d-flex justify-content-center py-1">{{isSuperDoctor == true ? " اضافة طبيب أول" : "اضافة روضة "}}
-          <i class="bi bi-person-plus"></i></button>
+          <i class="bi bi-person-plus"></i></button> -->
       </div>
       <div *ngIf="typeUsersToDisplay !== 'school'" class="form-floating w-25 d-flex justify-content-end">
         <select (change)="change_data($event)"  [(ngModel)]="typeDoctorToDisplay" aria-label="Floating label select example" class="form-select"
@@ -51,7 +51,7 @@
       </div>
 
       <div class="detailschild mt-4">
-        <div *ngIf="!spinner" class="d-flex justify-content-center align-items-center">
+        <!-- <div *ngIf="!spinner" class="d-flex justify-content-center align-items-center">
           <div class="spinner-grow text-primary" role="status">
             <span class="sr-only">Loading...</span>
           </div>
@@ -64,7 +64,7 @@
           <div class="spinner-grow text-primary" role="status">
             <span class="sr-only">Loading...</span>
           </div>
-        </div>
+        </div> -->
         <div *ngFor="let superdoctor of result" class="detailchild card d-flex flex-row flex-nowrap">
           <div class="profilephoto col-1">
             <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="">
@@ -82,9 +82,9 @@
             <p class="head">نوع المستخدم</p>
             <p class="underhead">{{superdoctor.type_user}}</p>
           </div>
-          <div [routerLink]='["/detailssuperdoctor",superdoctor.id]' class="= col-1 d-flex justify-content-end"><i
+          <!-- <div [routerLink]='["/detailssuperdoctor",superdoctor.id]' class="= col-1 d-flex justify-content-end"><i
             style="  font-size: 25px;    align-items: center;
-      display: flex;" class="bi bi-person-fill-gear"></i></div>
+      display: flex;" class="bi bi-person-fill-gear"></i></div> -->
         </div>
       </div>
 
