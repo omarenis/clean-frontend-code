@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import {NgModule, isDevMode} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {Route} from "@angular/router";
@@ -32,7 +33,8 @@ const routes: Route[] = [
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    NgOptimizedImage
+    NgOptimizedImage,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

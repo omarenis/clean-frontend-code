@@ -5,7 +5,6 @@ import { ConnectionService } from 'src/app/services/connection.service';
 import { saveDataToLocalhost } from 'src/app/services/genericservice';
 import { LoginSignupService } from 'src/app/services/login-signup.service';
 import { SecureStorageService } from 'src/app/services/secure-storage.service';
-import { Token } from 'typescript';
 
 @Component({
   selector: 'app-login',
@@ -46,32 +45,32 @@ submit($event: Event): void{
       saveDataToLocalhost(response);
       saveDataToLocalhost(response.profile);
 
-      let url: string;
-      if (response.type_user == 'parent')
-      {
-          url = 'childlist';
-      }
-      else if (response.profile.is_super_doctor == true)
-      {
-          url = 'seconddoctorlist';
-      }
-      else if (response.type_user == 'school')
-      {
-          url = 'teacherlist';
-      }
-      else if (response.type_user == 'teacher')
-      {
-          url = 'studentlist';
-      }
-      else if (response.type_user == 'doctor' && response.profile.is_super_doctor == false)
-      {
-          url = 'doctorpatientlist';
+      // let url: string;
+      // if (response.type_user == 'parent')
+      // {
+      //     url = 'childlist';
+      // }
+      // else if (response.profile.is_super_doctor == true)
+      // {
+      //     url = 'seconddoctorlist';
+      // }
+      // else if (response.type_user == 'school')
+      // {
+      //     url = 'teacherlist';
+      // }
+      // else if (response.type_user == 'teacher')
+      // {
+      //     url = 'studentlist';
+      // }
+      // else if (response.type_user == 'doctor' && response.profile.is_super_doctor == false)
+      // {
+      //     url = 'doctorpatientlist';
 
-      }
-      else
-      {
-          url = 'doctorlist';
-      }
+      // }
+      // else
+      // {
+      //     url = 'doctorlist';
+      // }
 
       this.connection.setConnection({
         type_user: response.type_user,
@@ -79,8 +78,6 @@ submit($event: Event): void{
         is_superuser: false
       });
 this.date()
-
-
     },
       error: (err) => {
         this.validated = false;
@@ -89,8 +86,6 @@ this.date()
 
     })
 
-
-
   }
 showOrHidePassword(event: Event): void {
   event.preventDefault();
@@ -98,8 +93,7 @@ showOrHidePassword(event: Event): void {
 }
 showAge!:any;
 date(){
-
   localStorage.setItem('lastLogin', new Date().getTime().toString());
-
 }
+
 }

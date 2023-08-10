@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app/app.component';
@@ -15,11 +16,35 @@ import { AboutUsTdahComponent } from './about-us/about-us-tdah/about-us-tdah.com
 
 const routes: Route[] = [
   {
-    path: "", redirectTo: "index", pathMatch: "full"
+    path: "", redirectTo: "", pathMatch: "full"
   },
   {
-    path: 'index', component: AppComponent
+    path: '', component: AppComponent
   }
+  ,
+  {
+    path: 'Login', component: LoginComponent
+  }
+  ,
+  {
+    path: 'Signup', component: SignupComponent
+  },
+  {
+    path: 'Aboutus', component: AboutUsPlatformComponent
+  },
+  {
+    path: 'Aboutus_autisme_test', component: AboutUsAutismeComponent
+  },
+  {
+    path: 'Aboutus_tdah_test', component: AboutUsTdahComponent
+  },
+  {
+    path: 'Our_test', component: DoTestComponent
+  },
+  {
+    path: 'Last_news', component: LastNewsComponent
+  },
+
 ]
 
 @NgModule({
@@ -38,7 +63,8 @@ const routes: Route[] = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    HttpClientModule
   ]
 })
 export class PublicModule { }
