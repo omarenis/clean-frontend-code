@@ -5,7 +5,14 @@ import {ConsultationTableComponent} from './consultation-table/consultation-tabl
 import {ChildrenTableComponent} from './children-table/children-table.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { ProfileComponent } from './profile/profile.component';
-import { RouterLink } from '@angular/router';
+import { Route, RouterLink, RouterModule } from '@angular/router';
+
+
+const routes: Route[] = [
+  {
+    path: 'Profile/:id', component:ProfileComponent
+  }
+]
 
 
 @NgModule({
@@ -19,7 +26,9 @@ import { RouterLink } from '@angular/router';
     ReactiveFormsModule,
     NgOptimizedImage,
     RouterLink,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forChild(routes),
+
   ],
   exports: [
     ConsultationTableComponent,

@@ -13,7 +13,7 @@ import { Route, RouterModule } from '@angular/router';
 
 const routes: Route[] = [
   {
-    path: 'children', component: ChildrenComponent
+    path: 'Children', component: ChildrenComponent
   }
 ]
 

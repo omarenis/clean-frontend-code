@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   family_name !: string | null;
   type_user !: string | null;
   public = false;
+  userId!:string | null;
   constructor(private loginService: LoginSignupService, private domSanitizer: DomSanitizer,
     private secureStorageService: SecureStorageService, private connection: ConnectionService,
     @Inject(PLATFORM_ID) private platformId: any, private httpClient: HttpClient, public router: Router) {
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
     this.connected = localStorage.getItem('access') !== null;
     this.family_name = localStorage.getItem('family_name') !== null ? localStorage.getItem('family_name') : '';
     this.name = localStorage.getItem('name') !== null ? localStorage.getItem('name') : '';
-
+    this.userId = localStorage.getItem('userId')!== null ? localStorage.getItem('userId') : '';
     console.log("🚀 ~ file: app.component.ts:16 ~ AppComponent ~ ngOnInit ~  this.connected:",  this.connected)
 
   }

@@ -16,6 +16,10 @@ const routes: Route[] = [
     loadChildren: () => import('./dashboard/dashboard.module').then((module) => module.DashboardModule)
   },
   {
+    path: 'shared',
+    loadChildren: () => import('./shared/shared.module').then((module) => module.SharedModule)
+  },
+  {
     path: '', redirectTo: '/public', pathMatch: 'full'
   }
 ];

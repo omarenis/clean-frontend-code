@@ -12,13 +12,13 @@ import { SecureStorageService } from 'src/app/services/secure-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  password: string = '';
-  showPassword: boolean = false;
-  togglePassword(passwordField: HTMLInputElement): void {
-    this.showPassword = !this.showPassword;
-    passwordField.type = this.showPassword ? 'text' : 'password';
+  // password: string = '';
+  // showPassword: boolean = false;
+  // togglePassword(passwordField: HTMLInputElement): void {
+  //   this.showPassword = !this.showPassword;
+  //   passwordField.type = this.showPassword ? 'text' : 'password';
 
-  }
+  // }
   formGroup !: FormGroup;
   validated !: boolean;
   error !: string;
@@ -35,6 +35,7 @@ ngOnInit(): void {
         this.error = '';
         this.validated = true;
         this.shown = false;
+
 }
 submit($event: Event): void{
   $event.preventDefault();
@@ -45,11 +46,11 @@ submit($event: Event): void{
       saveDataToLocalhost(response);
       saveDataToLocalhost(response.profile);
 
-      // let url: string;
-      // if (response.type_user == 'parent')
-      // {
-      //     url = 'childlist';
-      // }
+       let url: string;
+      if (response.type_user == 'parent')
+      {
+          url = 'childlist';
+      }
       // else if (response.profile.is_super_doctor == true)
       // {
       //     url = 'seconddoctorlist';
@@ -77,6 +78,10 @@ submit($event: Event): void{
         name: response.name,
         is_superuser: false
       });
+   
+       this.router.navigate(['/dashboard/Children']).then(() => {
+        window.location.reload();
+         });
 this.date()
     },
       error: (err) => {
@@ -94,6 +99,15 @@ showOrHidePassword(event: Event): void {
 showAge!:any;
 date(){
   localStorage.setItem('lastLogin', new Date().getTime().toString());
+}
+
+
+password: string = '';
+showPassword: boolean = false;
+togglePassword(passwordField: HTMLInputElement): void {
+  this.showPassword = !this.showPassword;
+  passwordField.type = this.showPassword ? 'text' : 'password';
+
 }
 
 }

@@ -13,19 +13,19 @@
     <div class="cardchildliste card card-body ">
       <nav>
         <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-home-tab" (click)="getPatients('tdah')" data-bs-toggle="tab"
-                  data-bs-target="#nav-tdah" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+          <button class="nav-link active" id="nav-tdah-tab"data-bs-toggle="tab"
+                  data-bs-target="#nav-tdah" type="button" role="tab" aria-controls="nav-tdah" aria-selected="true">
             إختبارات اضطراب تشتت الانتباه و فرط الحركة
           </button>
-          <button class="nav-link" id="nav-profile-tab" (click)="getPatients('autisme')" data-bs-toggle="tab"
-                  data-bs-target="#nav-autism" type="button" role="tab" aria-controls="nav-profile"
+          <button class="nav-link" id="nav-profile-tab"  data-bs-toggle="tab"
+                  data-bs-target="#nav-autism" type="button" role="tab" aria-controls="nav-autism"
                   aria-selected="false">إختبارات التوحد
           </button>
         </div>
       </nav>
       <div class=" mt-2">
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-tdah" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="tab-pane fade show active" id="nav-tdah" role="tabpanel" aria-labelledby="nav-tdah-tab">
             <div class="addchild d-flex justify-content-end mb-2">
               <button routerLink="/searchchild" class=" btnaddchild d-flex justify-content-center py-1">اضافة طفل <i
                 class="bi bi-person-plus"></i></button>
@@ -35,6 +35,20 @@
             </div>
           </div>
         </div>
+<!--autism-->
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show " id="nav-autism" role="tabpanel" aria-labelledby="nav-autism-tab">
+    <div class="addchild d-flex justify-content-end mb-2">
+      <button routerLink="/searchchild" class=" btnaddchild d-flex justify-content-center py-1">اضافة طفل <i
+        class="bi bi-person-plus"></i></button>
+    </div>
+    <div class="detailschild ">
+      <app-children-table [children]="this.data" (patientOperationEvent)="operationEvent($event)" [type_user]="'superdoctor'" [type_patients]="'tdah'"></app-children-table>
+    </div>
+  </div>
+</div>
+
+
       </div>
     </div>
   </div>

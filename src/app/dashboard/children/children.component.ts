@@ -12,7 +12,6 @@ import {environment} from "../../../environments/environment";
   styleUrls: ['./children.component.css']
 })
 export class ChildrenComponent extends DynamicTableCrud<Patient> implements OnInit {
-  headers = ['', 'الاسم', 'اللقب', 'تاريخ الميلاد'];
   access !: string | null;
   patient !: Patient;
   userId !: number;
@@ -38,27 +37,29 @@ export class ChildrenComponent extends DynamicTableCrud<Patient> implements OnIn
         params: type_user === "parent" ? {parent_id: Number(localStorage.getItem('userId'))} : null,
         headers: {Authorization: `Bearer ${this.secureStorageService.getToken(this.access)}`}
       };
-      await this.getPatients('tdah');
-      console.log(this.result);
+      // await this.getPatients('tdah');
+      // console.log(this.result);
     }
   }
 
   operationEvent(event: Operation)
   {
+    console.log("🚀 ~ file: children.component.ts:46 ~ ChildrenComponent ~ event:", event)
+
     console.log(event);
   }
 
-  override async getData(): Promise<void> {
-    this.service.list(this.actionUrl, this.options).subscribe(res => {
-      this.result = res.filter(patient => patient.score_parent != 0);
-      this.spinner = true
-    });
+  // override async getData(): Promise<void> {
+  //   this.service.list(this.actionUrl, this.options).subscribe(res => {
+  //     this.result = res.filter(patient => patient.score_parent != 0);
+  //     this.spinner = true
+  //   });
 
-    console.log('result', this.result);
-  }
+  //   console.log('result', this.result);
+  // }
 
-  async getPatients(type_illness: string) {
-    this.actionUrl = `${environment.url}/api/${type_illness === 'autisme' ? 'autisme/autistics' : 'patients'}`;
-    await this.getData();
-  }
+  // async getPatients(type_illness: string) {
+  //   this.actionUrl = `${environment.url}/api/${type_illness === 'autisme' ? 'autisme/autistics' : 'patients'}`;
+  //   await this.getData();
+  // }
 }
