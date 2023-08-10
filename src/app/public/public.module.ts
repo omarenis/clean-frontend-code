@@ -44,6 +44,12 @@ const routes: Route[] = [
   {
     path: 'Last_news', component: LastNewsComponent
   },
+  {
+    path: 'Autistic_question/:id', component: AutisticQuestionsComponent
+  },
+  {
+    path: 'Tdah_question/:id', component: TdhaQuestionsComponent
+  },
 
 ]
 

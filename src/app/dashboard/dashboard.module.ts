@@ -14,7 +14,10 @@ import { Route, RouterModule } from '@angular/router';
 const routes: Route[] = [
   {
     path: 'Children', component: ChildrenComponent
-  }
+  },
+  {
+    path: 'Users', component: UsersComponent
+  },
 ]
 
 

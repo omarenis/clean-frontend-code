@@ -25,14 +25,14 @@
                   <div class="col-md-5 mb-4 pb-2">
                     <div class=" ">
                       <label class="form-label" for="form3Examplev4">رقم بطاقة التعريف الوطنية</label>
-                      <input type="number" formControlName="login_number" id="login_number" class="form-control form-control-lg" onKeyPress="if(this.value.length==8) return false;"/>
+                      <input type="number" formControlName="login_number" id="login_number" class="form-control form-control-lg" onKeyPress="if(this.value.length==11) return false;"/>
 
                     </div>
                   </div>
                   <div class="col-md-5 mb-4 pb-2">
                     <div class=" ">
                       <label class="form-label" for="form3Examplev4">رقم الهاتف</label>
-                      <input type="number"  class="form-control form-control-lg" formControlName="telephone" id="phone" onKeyPress="if(this.value.length==8) return false;"/>
+                      <input type="number"  class="form-control form-control-lg" formControlName="telephone" id="phone" onKeyPress="if(this.value.length==9) return false;"/>
 
                     </div>
                   </div>
@@ -88,46 +88,33 @@
                     <div class="  ">
                       <label class="form-label" for="form3Examplev4"> كلمة السر </label>
                       <div class="d-flex">
-                      <input type="password"  formControlName="password" id="password" class="form-control form-control-lg" #passwordField/>
-                      <button type="button" class="eye" (click)="togglePassword(passwordField)">
-                        <span class="icon-eye" *ngIf="!showPassword"></span>
-                        <span class="icon-eye-slash" *ngIf="showPassword"></span>
-                      </button>
-                    </div>
+                        <input type="password" class="form-control "   formControlName="password" id="password"  style="border-radius: 5px;" #passwordField>
+                        <button type="button"  (click)="togglePassword(passwordField)" style="border: none;background-color: none">
+                          <i  class="bi bi-eye" *ngIf="showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                          <i  class="bi bi-eye-slash" *ngIf="!showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                         </button>
+
+                      </div>
                     </div>
 
                   </div>
                   <div class="col-md-5 mb-4 pb-2">
                     <div class=" ">
                       <label class="form-label" for="form3Examplev4" [ngStyle]="{'color': isColorRed ? 'black' : 'red'}">تأكيد كلمة السر </label>
-                      <div class="d-flex">
-                      <input type="password"  id="confirmPassword" formControlName="confirmPassword" class="form-control form-control-lg"#confirmpasswordField />
-                      <button type="button" class="eye" (click)="togglePassword(confirmpasswordField)">
-                        <span class="icon-eye" *ngIf="!showPassword"></span>
-                        <span class="icon-eye-slash" *ngIf="showPassword"></span>
-                      </button>
-                    </div>
 
+                    <div class="d-flex">
+                      <input type="password" class="form-control "   formControlName="confirmPassword" id="password"  style="border-radius: 5px;" #confirmPassword>
+                      <button type="button"  (click)="togglePassword(confirmPassword)" style="border: none;background-color: none">
+                        <i  class="bi bi-eye" *ngIf="showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                        <i  class="bi bi-eye-slash" *ngIf="!showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                       </button>
+
+                    </div>
                     </div>
 
                   </div>
 
 
-
-                <!--
-                    <div class="form-group mb-3">
-                      <label for="exampleFormControlFile1">اضافة صورة</label>
-                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input  " type="checkbox" value="" id="form2Example3c" />
-                    <label class="form-check-label text-black mr-3" for="form2Example3">
-                      أنا أقبل  <a href="#!" >الشروط والأحكام</a> الخاصة بالمنصة .
-                    </label>
-                  </div>
-[disabled]="signupFormControl.invalid"
-                -->
               </div>
                 <div class="d-flex justify-content-center">
                 <button  [disabled]="signupFormControl.invalid"  type="submit" class=" btn-light my-4 " (click)="submit()" style="background-color: #43A7DF; color: white ;border: none; height: 40px;width: 130px;border-radius: 5px;">انشاء حساب</button>

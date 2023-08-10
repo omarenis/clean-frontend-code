@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AbstractRestService} from "../../services/genericservice";
 import {Person} from "../../models/person";
 import {SecureStorageService} from "../../services/secure-storage.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {Profile} from "../../models/profile";
 
@@ -18,7 +18,8 @@ export class ProfileComponent {
   data: any = {};
   profile !: any;
 
-  constructor(private service: AbstractRestService<Person>, private secureStorageService: SecureStorageService, private router: Router) {
+  constructor(private service: AbstractRestService<Person>, private secureStorageService: SecureStorageService,
+     private router: Router,private route:ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -33,15 +34,21 @@ export class ProfileComponent {
     if (access !== null) {
       this.token = this.secureStorageService.getToken(access);
     }
-    this.service.get(`${environment.url}/api/persons`, userId, {
-      headers: {
-        Authorization: `Bearer ${this.token}`
-      }
-    }).subscribe((response: Person) => {
-      console.log('getdata', response)
-      this.data = response;
-      this.profile = response.profile;
-    });
+
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.service.get(`${environment.url}/api/persons`, id!==undefined?id : userId, {
+        headers: {
+          Authorization: `Bearer ${this.token}`
+        }
+      }).subscribe((response: Person) => {
+        console.log('getdata', response)
+        this.data = response;
+        this.profile = response.profile;
+      });
+    })
+
+
 
   }
 

@@ -1,67 +1,113 @@
 <div class="container">
   <div class="back d-flex justify-content-end ">
-    <a class="btn" [routerLink]='profile === undefined || profile.is_super_doctor === true ? "users" : "children" '>رجوع<i
-      class="bi bi-arrow-return-left"></i></a>
+    <a class="btn" routerLink="/childlist" >رجوع<i class="bi bi-arrow-return-left"></i></a>
   </div>
-  <div class="main-body card position-relative d-flex flex-column">
-    <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">الملف الشخصي</h3>
-    <div class="row gutters-sm">
-      <div class="col-md-12">
-        <div class="mb-3">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-4 text-justify">
-                <h6 class="mb-0">الإسم</h6>
-              </div>
-              <div class="col-md-6 text-secondary">
-                {{data.name}}
-              </div>
-            </div>
-            <hr>
-            <div class="row ">
-              <div class="col-sm-4 text-justify">
-                <h6 class="mb-0">اللقب</h6>
-              </div>
-              <div class="col-sm-3 text-secondary">
-                {{data.profile.family_name}}
+  <div  class="main-body card">
+      <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">الملف الشخصي</h3>
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3">
+            <div class="">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img src="assets/img/pngwing.com.png" alt="Admin" width="150">
+                  <div class="mt-3">
+                    <h4>  {{data.name+' '+data.profile.family_name}}</h4>
+
+                  </div>
+                </div>
               </div>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4 text-justify">
-                <h6 class="mb-0 ">رقم بطاقة التعريف الوطنية</h6>
-              </div>
-              <div class="col-sm-3 text-secondary">
-                {{data.login_number}}
+
+          </div>
+          <div class="col-md-8 ">
+            <div class="mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 text-justify">
+                    <h6 class="mb-0">الإسم</h6>
+                  </div>
+                  <div class="col-md-6 text-secondary">
+                    {{data.name}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row ">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0">اللقب</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{data.profile.family_name}}
+                      </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0 ">رقم بطاقة التعريف الوطنية</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{data.login_number}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0 ">رقم هاتف</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{data.telephone}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0 ">رقم هاتف الثاني</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{data.telephone2}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0">الولاية</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{data.localisation.state}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0">المعتمدية</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{data.localisation.delegation}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0">الترقيم البريدي</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{data.localisation.zip_code}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="edit col-sm-12">
+                    <button routerLink="/editprofileparent"> تعديل الملف الشخصي</button>
+                  </div>
+                </div>
               </div>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4 text-justify">
-                <h6 class="mb-0">البريد اﻹلكتروني</h6>
-              </div>
-              <div class="col-sm-3 text-secondary">
-                {{data.email}}
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4 text-justify">
-                <h6 class="mb-0">رقم الهاتف</h6>
-              </div>
-              <div class="col-sm-3 text-secondary">
-                {{data.telephone}}
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="edit col-sm-12">
-                <button routerLink="/editprofileadmin"> تعديل الملف الشخصي</button>
-              </div>
-            </div>
+
+
+
+
+
           </div>
         </div>
+
       </div>
-    </div>
   </div>
-</div>

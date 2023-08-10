@@ -49,7 +49,11 @@ submit($event: Event): void{
        let url: string;
       if (response.type_user == 'parent')
       {
-          url = 'childlist';
+          url = '/dashboard/Children';
+      }
+      else
+      {
+          url = '/dashboard/Users';
       }
       // else if (response.profile.is_super_doctor == true)
       // {
@@ -68,18 +72,15 @@ submit($event: Event): void{
       //     url = 'doctorpatientlist';
 
       // }
-      // else
-      // {
-      //     url = 'doctorlist';
-      // }
+
 
       this.connection.setConnection({
         type_user: response.type_user,
         name: response.name,
         is_superuser: false
       });
-   
-       this.router.navigate(['/dashboard/Children']).then(() => {
+
+       this.router.navigate([url]).then(() => {
         window.location.reload();
          });
 this.date()

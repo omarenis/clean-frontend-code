@@ -20,14 +20,14 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
   access !: string | null;
   typeDoctorToDisplay !: string;
   selectedOption:string
+  spinner:boolean = false
   constructor(protected override service: AbstractRestService<Person>, protected override secureStorageService: SecureStorageService,
               private httpClient: HttpClient, private router: Router) {
     super(service, `${environment.url}/api/persons`, secureStorageService);
     this.selectedOption = '';
   }
-
   async ngOnInit(): Promise<void> {
-    this.typeUsersToDisplay = 'super_doctors';
+    this.typeUsersToDisplay = 'super_doctor';
     this.access = localStorage.getItem('access');
     const type_user = localStorage.getItem('type_user');
     if (type_user !== null) {
@@ -41,12 +41,6 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
       await this.displaysuperdoctor();
     }
   }
-
-  dosplayUsers()
-  {
-
-  }
-
   displayUser(params?: object): void {
     const filter: {[key: string]: string | boolean | number} = {};
     if(this.typeDoctorToDisplay === 'doctor' )
@@ -72,10 +66,9 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
     this.service.list(this.actionUrl, this.options).subscribe(res => {
       this.result = res;
       this.numberItems = this.result.length;
-      // this.spinner = true
-      // this.isAnyperson = true
-      // this.isSuperDoctor = false
-      // this.isSchool = false
+     this.spinner = true
+     this.typeUsersToDisplay = 'other_users';
+
     })
 
   }
@@ -84,33 +77,22 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
     this.service.list(this.actionUrl, this.options).subscribe(res => {
       this.result = res.filter(person => person.profile?.is_super_doctor == true);
       this.numberItems = this.result.length;
-      // this.spinner = true
-      // this.isSuperDoctor = true
-      // this.isSchool = false
-      // this.isAnyperson = false
+      this.spinner = true
+      this.typeUsersToDisplay = 'super_doctor';
     });
   }
-
   displaykindergarten(): void {
     this.service.list(this.actionUrl, this.options).subscribe({
       next: (res: Person[]) => {
         this.result = res.filter((person: Person) => person.type_user === "school");
         this.numberItems = this.result.length;
-        // this.spinner = true
-        // this.isSchool = true
-        // this.isAnyperson = false
-        // this.isSuperDoctor = false
+      this.spinner = true
+      this.typeUsersToDisplay = 'school';
+
       },
       error: () => {
 
       }
     })
-  }
-
-  async change_data(event: any): Promise<void> {
-    event.preventDefault();
-    const type_user = event.target.value;
-    console.log("🚀 ~ file: list-users.component.ts:93 ~ ListUsersComponent ~ change_data ~ type_user:", type_user)
-    await this.displayUser(type_user)
   }
 }

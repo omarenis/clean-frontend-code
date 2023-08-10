@@ -1439,7 +1439,7 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
       family_name: new FormControl('', [Validators.required]),
       telephone: new FormControl('', [Validators.required, Validators.minLength(8)]),
       telephone2: new FormControl('', Validators.minLength(8)),
-      login_number: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      login_number: new FormControl('', [Validators.required, Validators.minLength(8),Validators.maxLength(11)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       confirmPassword: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.email]),
