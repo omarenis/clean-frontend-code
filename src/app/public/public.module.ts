@@ -13,6 +13,9 @@ import { Route, RouterModule } from '@angular/router';
 import { AboutUsPlatformComponent } from './about-us/about-us-platform/about-us-platform.component';
 import { AboutUsAutismeComponent } from './about-us/about-us-autisme/about-us-autisme.component';
 import { AboutUsTdahComponent } from './about-us/about-us-tdah/about-us-tdah.component';
+import { AddChildComponent } from './add-child/add-child.component';
+import { ChooseChildComponent } from './choose-child/choose-child.component';
+import { InfoTestComponent } from './info-test/info-test.component';
 
 const routes: Route[] = [
   {
@@ -48,7 +51,16 @@ const routes: Route[] = [
     path: 'Autistic_question/:id', component: AutisticQuestionsComponent
   },
   {
-    path: 'Tdah_question/:id', component: TdhaQuestionsComponent
+    path: 'Tdah_question/:type_user/:id', component: TdhaQuestionsComponent
+  },
+  {
+    path: 'choose_child', component: ChooseChildComponent
+  },
+  {
+    path: 'add_child/:type_test', component: AddChildComponent
+  },
+  {
+    path: 'info_test/:type_test', component: InfoTestComponent
   },
 
 ]
@@ -64,7 +76,10 @@ const routes: Route[] = [
     AutisticQuestionsComponent,
     AboutUsPlatformComponent,
     AboutUsAutismeComponent,
-    AboutUsTdahComponent
+    AboutUsTdahComponent,
+    AddChildComponent,
+    ChooseChildComponent,
+    InfoTestComponent
   ],
   imports: [
     CommonModule,

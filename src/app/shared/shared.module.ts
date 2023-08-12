@@ -10,6 +10,9 @@ import { Route, RouterLink, RouterModule } from '@angular/router';
 
 const routes: Route[] = [
   {
+    path: 'Profile', component:ProfileComponent
+  },
+  {
     path: 'Profile/:id', component:ProfileComponent
   }
 ]

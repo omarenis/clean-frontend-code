@@ -51,7 +51,7 @@
           </div>
 
           <div class="next d-flex justify-content-end ml-5">
-            <button [disabled]="formGroup.invalid" type="submit" class=" btn-light my-4 ">
+            <button [disabled]="formGroup.invalid" type="submit" (click)=" submit($event)" class=" btn-light my-4 ">
               التالي<i class="bi bi-caret-left-fill mr-1"></i></button>
           </div>
 

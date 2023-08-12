@@ -79,9 +79,20 @@ margin-right: 5px;
   height: 40px;
   border: none;
   border-radius: 5px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 .edit button:hover{
   color: white;
   background: #3178a1;
+
+}
+.edit button.delete{
+  background-color: #dc3545;
+}
+.edit button.delete:hover{
+  color: white;
+  background: #b32b38;
+
 
 }

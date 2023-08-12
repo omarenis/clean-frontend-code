@@ -1,0 +1,26 @@
+.next button {
+  background-color: #43A7DF;
+  color: white ;
+  transition: 0.3s;
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+.next button:hover{
+  color: white;
+  background: #3178a1;
+
+}
+.quest{
+width: 400px;
+margin-right: 10px;
+box-shadow: rgba(110, 110, 110, 0.16) 0px 1px 4px;
+}
+h6{
+color: #006faf;
+}
+.reponse{
+  margin-left: 20px;
+  margin-right: 40px;
+}

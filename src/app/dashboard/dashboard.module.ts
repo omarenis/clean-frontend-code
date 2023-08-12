@@ -18,6 +18,9 @@ const routes: Route[] = [
   {
     path: 'Users', component: UsersComponent
   },
+  {
+    path: 'Add_user/:type_user', component: UserComponent
+  },
 ]
 
 

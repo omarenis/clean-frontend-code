@@ -1,0 +1,52 @@
+<section class="h-custom gradient-custom-2 d-flex justify-content-center mb-5">
+  <div class="container py-3">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="back d-flex justify-content-end">
+          <button routerLink="/dashboard/Children">
+            رجوع<i class="bi bi-arrow-return-left"></i>
+          </button>
+        </div>
+        <div
+          class="card card-registration card-registration-2"
+          style="border-radius: 15px; height: 570px"
+        >
+          <h3 class="fw-normal mb-4 mt-4 text-center" style="color: #588adb">
+            بحث عن الطفل
+          </h3>
+          <h6 class="fw-normal mb-4 text-center" style="color: #7d7d7d">
+            لإجراء إختبار اختر طفل من القائمة أو اضغط على إضافة طفل لتسجيل طفل
+            جديد
+          </h6>
+
+          <div class="child-contain">
+            <h6
+              *ngIf="numberItems == 0"
+              class="fw-normal mb-4 text-center mt-5"
+              style="color: #fe6e6e"
+            >
+              لم يتم ادخال اي طفل من قبل المعلم بعد
+            </h6>
+            <div
+              *ngFor="let patient of result; let i = index"
+              (click)="saveItem(patient)"
+              class="detailchild card d-flex flex-row mb-3 ml-1"
+            >
+              <img src="assets/img/pngwing.com.png" class="img-fluid" alt="" />
+              <div class="text d-flex flex-row mr-3">
+                <p>{{ patient.name + " " + patient.family_name }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="next d-flex justify-content-end mt-3 ml-5">
+            <div class="addchild d-flex justify-content-end">
+              <button  [routerLink]='["/public/add_child/Tdah"]'
+                class="btnaddchild d-flex justify-content-center py-1" >اضافة طفل <i class="bi bi-person-plus mr-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
     this.family_name = localStorage.getItem('family_name') !== null ? localStorage.getItem('family_name') : '';
     this.name = localStorage.getItem('name') !== null ? localStorage.getItem('name') : '';
     this.userId = localStorage.getItem('userId')!== null ? localStorage.getItem('userId') : '';
+    this.type_user= localStorage.getItem('type_user')!== null ? localStorage.getItem('type_user') : '';
     console.log("🚀 ~ file: app.component.ts:16 ~ AppComponent ~ ngOnInit ~  this.connected:",  this.connected)
 
   }

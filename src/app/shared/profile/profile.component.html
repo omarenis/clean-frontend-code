@@ -1,9 +1,9 @@
 <div class="container">
   <div class="back d-flex justify-content-end ">
-    <a class="btn" routerLink="/childlist" >رجوع<i class="bi bi-arrow-return-left"></i></a>
+    <a class="btn" routerLink="/dashboard/Users" >رجوع<i class="bi bi-arrow-return-left"></i></a>
   </div>
   <div  class="main-body card">
-      <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">الملف الشخصي</h3>
+      <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">{{iseditable?'ملف  المستخدم':'الملف الشخصي'}}</h3>
         <div class="row gutters-sm">
           <div class="col-md-4 mb-3">
             <div class="">
@@ -94,11 +94,23 @@
                   </div>
                 </div>
                 <hr>
+                <ng-container *ngIf!="iseditable">
                 <div class="row">
                   <div class="edit col-sm-12">
                     <button routerLink="/editprofileparent"> تعديل الملف الشخصي</button>
                   </div>
                 </div>
+              </ng-container>
+                <ng-container *ngIf="iseditable">
+                <div class="row">
+                  <div class="edit col-sm-12">
+                    <button > تعديل الملف </button>
+                    <button (click)="deleteuser(data.id)" class="delete">حذف</button>
+
+                  </div>
+                </div>
+              </ng-container>
+
               </div>
             </div>
 

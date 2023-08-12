@@ -1,0 +1,112 @@
+<section class="h-custom gradient-custom-2 d-flex justify-content-center mb-5">
+  <div class="container py-3">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="back d-flex justify-content-end">
+          <button [routerLink]='["/public/choose_child"]'>
+            رجوع<i class="bi bi-arrow-return-left"></i>
+          </button>
+        </div>
+        <div
+          [formGroup]="formGroup"
+          class="card card-registration card-registration-2"
+        >
+          <h3 class="fw-normal mb-4 mt-4 text-center" style="color: #588adb">
+            المعطيات الشخصية للطفل
+          </h3>
+
+          <div class="px-5 text-justify">
+            <div *ngIf="type_user==='teacher'" class="row">
+              <div class="col-md-6 mb-4 pb-2">
+                <div class=" ">
+                  <label class="form-label" for="form3Examplev2">رقم بطاقة التعريف الوطنية للولي</label>
+                  <input type="text" formControlName="parent" id="parent" class="form-control form-control-lg" />
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-4 pb-2">
+                <div class=" ">
+                  <label class="form-label text-justify" for="form3Examplev2"
+                    >الإسم</label
+                  >
+                  <input
+                    type="text"
+                    id="form3Examplev2"
+                    class="form-control form-control-lg"
+                    formControlName="name"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 mb-4 pb-2">
+                <div class=" ">
+                  <label class="form-label text-justify" for="form3Examplev3"
+                    >اللقب</label
+                  >
+                  <input
+                    type="text"
+                    id="form3Examplev3"
+                    class="form-control form-control-lg"
+                    formControlName="family_name"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4 pb-2">
+                <div class=" ">
+                  <label class="form-label" for="form3Examplev4"
+                    >تاريخ الولادة</label
+                  >
+                  <input
+                    type="date"
+                    [(ngModel)]="age"
+                    class="form-control form-control-lg"
+                    data-date-inline-picker="false"
+                    formControlName="birthdate"
+                    id="birthdate"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 mb-2 pb-4">
+                <label class="form-label" for="form3Examplev4"
+                  >إختر الجنس</label
+                >
+                <select
+                  class="select form-select form-control-lg"
+                  formControlName="gender"
+                >
+                  <option value="" hidden>الجنس</option>
+                  <option value="F">انثى</option>
+                  <option value="M">ذكر</option>
+                </select>
+              </div>
+            </div>
+            <div *ngIf="type_test==='Autism'" class="row">
+              <div class="col-md-6 mb-2 pb-4">
+                <label class="form-label" for="form3Examplev4">من سيقوم بتطبيق التمارين في المرة الاولى</label>
+                <select class="select form-select form-control-lg" formControlName="type_parent">
+                  <option value="" hidden>اضغط للاختيار</option>
+                  <option value="mother">الأم</option>
+                  <option value="father">الأب</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="next d-flex justify-content-end ml-5">
+            <button
+              type="button"
+              [disabled]="formGroup.invalid"
+              (click)="submit($event)"
+            >
+              التالي<i class="bi bi-caret-left-fill mr-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

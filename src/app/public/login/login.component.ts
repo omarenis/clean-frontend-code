@@ -51,6 +51,14 @@ submit($event: Event): void{
       {
           url = '/dashboard/Children';
       }
+       else if (response.profile.is_super_doctor == true)
+      {
+          url = '/dashboard/Users';
+      }
+      else if (response.type_user == 'school')
+      {
+          url = '/dashboard/Users';
+      }
       else
       {
           url = '/dashboard/Users';

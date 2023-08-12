@@ -1446,7 +1446,6 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
       state: new FormControl('', [Validators.required]),
       delegation: new FormControl('', [Validators.required]),
       zip_code: new FormControl('', [Validators.required]),
-
       country: new FormControl('', [Validators.required]),
     });
     this.error = '';

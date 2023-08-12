@@ -1,3 +1,4 @@
+import { Profile } from './../../models/profile';
 import {Component, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {DynamicTableCrud} from "../../services/dynamic-table";
@@ -27,7 +28,6 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
     this.selectedOption = '';
   }
   async ngOnInit(): Promise<void> {
-    this.typeUsersToDisplay = 'super_doctor';
     this.access = localStorage.getItem('access');
     const type_user = localStorage.getItem('type_user');
     if (type_user !== null) {
@@ -38,10 +38,23 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
         params: null,
         headers: {Authorization: `Bearer ${this.secureStorageService.getToken(this.access)}`}
       };
-      await this.displaysuperdoctor();
+      if(type_user==='admin'){
+        this.typeUsersToDisplay = 'super_doctor';
+        await this.displaysuperdoctor();
+      }
+      else if(type_user==='doctor'){
+        this.typeUsersToDisplay = 'doctor';
+        await this.displaydoctor();
+
+      }
+      else{
+        this.typeUsersToDisplay = 'teacher';
+        await this.displayteacher()
+      }
+
     }
   }
-  displayUser(params?: object): void {
+displayUser(params?: object): void {
     const filter: {[key: string]: string | boolean | number} = {};
     if(this.typeDoctorToDisplay === 'doctor' )
     {
@@ -73,18 +86,26 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
 
   }
 
-  displaysuperdoctor(): void {
+displaysuperdoctor(): void {
     this.service.list(this.actionUrl, this.options).subscribe(res => {
-      this.result = res.filter(person => person.profile?.is_super_doctor == true);
+      this.result = res.filter((person: Person) => person.profile?.is_super_doctor === true);
       this.numberItems = this.result.length;
       this.spinner = true
       this.typeUsersToDisplay = 'super_doctor';
     });
   }
-  displaykindergarten(): void {
+
+displaykindergarten(): void {
+    if (this.access) {
+      const type_user = localStorage.getItem('type_user');
+    this.options= {
+      params: type_user === "admin" ? {
+        type_user: String('school') } :null,
+      headers: {Authorization: `Bearer ${this.secureStorageService.getToken(this.access)}`}
+    };
     this.service.list(this.actionUrl, this.options).subscribe({
       next: (res: Person[]) => {
-        this.result = res.filter((person: Person) => person.type_user === "school");
+        this.result = res
         this.numberItems = this.result.length;
       this.spinner = true
       this.typeUsersToDisplay = 'school';
@@ -95,4 +116,34 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
       }
     })
   }
+}
+displaydoctor(): void {
+  this.service.list(this.actionUrl, this.options).subscribe(res => {
+  this.result=res.filter(person => person.type_user==='doctor' && person.profile?.is_super_doctor==false);
+  this.numberItems = this.result.length;
+  this.spinner=true
+  console.log(' this.result',this.result);
+});
+  }
+displayteacher(){
+  if (this.access) {
+    const type_user = localStorage.getItem('type_user');
+  this.options= {
+    params: type_user === "school" ? {
+      type_user: String('teacher') ,
+    profile__school:Number(localStorage.getItem('userId'))} :null,
+    headers: {Authorization: `Bearer ${this.secureStorageService.getToken(this.access)}`}
+  };
+  this.service.list(this.actionUrl, this.options).subscribe({
+    next: (res: Person[]) => {
+      this.result = res
+      this.numberItems = this.result.length;
+    this.spinner = true
+    },
+    error: () => {
+
+    }
+  })
+}
+}
 }

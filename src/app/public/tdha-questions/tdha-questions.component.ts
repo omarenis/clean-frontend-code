@@ -240,7 +240,7 @@ export class TdhaQuestionsComponent implements OnInit {
               localStorage.setItem('family_name', family_name);
             }
             if (this.type_user == 'parent') {
-              await this.router.navigate(['/childlist']);
+              await this.router.navigate(['/dashboard/Children']);
             } else {
               await this.router.navigate(['/studentlist']);
 
@@ -250,7 +250,7 @@ export class TdhaQuestionsComponent implements OnInit {
       }
 
     } else {
-      await this.router.navigate([`/question/${this.type_user}/${this.step + 1}`]);
+      await this.router.navigate([`/public/Tdah_question/${this.type_user}/${this.step + 1}`]);
     }
   }
 
