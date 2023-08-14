@@ -42,7 +42,7 @@ flex-wrap: nowrap;
 
 .navcard{
 
-  width: 11rem;
+  width: 200px;
   border-radius: 15px;
   margin-right: 15px;
   display: flex;

@@ -21,6 +21,9 @@ const routes: Route[] = [
   {
     path: 'Add_user/:type_user', component: UserComponent
   },
+  {
+    path: 'consultation', component: AppointmentsComponent
+  },
 ]
 
 

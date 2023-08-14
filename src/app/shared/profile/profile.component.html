@@ -1,6 +1,7 @@
+
 <div class="container">
   <div class="back d-flex justify-content-end ">
-    <a class="btn" routerLink="/dashboard/Users" >رجوع<i class="bi bi-arrow-return-left"></i></a>
+    <a class="btn" [routerLink]='type_user==="parent"?["/dashboard/Children"]:["/dashboard/Users"]' >رجوع<i class="bi bi-arrow-return-left"></i></a>
   </div>
   <div  class="main-body card">
       <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">{{iseditable?'ملف  المستخدم':'الملف الشخصي'}}</h3>

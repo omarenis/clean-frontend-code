@@ -1,0 +1,58 @@
+
+
+<div class="continue">
+  <div class="d-flex ">
+
+            <div class="listchild container-fluid d-flex justify-content-center " >
+              <img class="espacekids img-fluid" src="assets\img\espace kids final.png">
+              <h3 >جدول <span style="color: #57CFDE;">المواعيد</span></h3>
+          </div>
+        </div>
+
+
+  <div class="navandlistchild  row ">
+          <div class="navcard card " >
+                  <a routerLink="/dashboard/Children" class="nav-link"><i class="bi bi-list-nested"></i>قائمة الاطفال</a>
+                  <a  routerLink="/meeting" class="nav-link"><i class="bi bi-calendar-event"></i> جدول المواعيد</a>
+      </div>
+      <div class="cardchildliste card card-body ">
+
+
+
+
+
+        <div class="detailschild mt-4">
+          <p class="d-flex justify-content-center mt-5 text-danger  " *ngIf="numberItems==0"> ليس هناك اي موعد</p>
+
+          <div *ngFor="let consultation of consultation" class="detailchild card d-flex flex-row flex-nowrap">
+            <div class="profilephoto col-1">
+            <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="" >
+          </div>
+
+              <div class="col-2">
+                <p class="head">الإسم و اللقب</p>
+                <p class="underhead">{{consultation.patient.name+' '+consultation.patient.family_name}}</p>
+              </div>
+            <div class="col-3">
+              <p class="head">تاريخ اﻹجتماع</p>
+              <p class="underhead">{{consultation.date}}</p>
+            </div>
+            <div class="col-3">
+              <p class="head">الإسم واللقب الطبيب</p>
+              <p class="underhead">{{consultation.doctor.name+' '+consultation.doctor.profile.family_name}}</p>
+
+            </div>
+            <div class="col-3">
+            <p class="head">رقم هاتف الطبيب</p>
+            <p class="underhead">{{consultation.doctor.telephone}}</p>
+          </div>
+          </div>
+
+    </div>
+
+
+
+  </div>
+      </div>
+
+    </div>

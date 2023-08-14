@@ -6,6 +6,8 @@ import {ChildrenTableComponent} from './children-table/children-table.component'
 import {ReactiveFormsModule} from "@angular/forms";
 import { ProfileComponent } from './profile/profile.component';
 import { Route, RouterLink, RouterModule } from '@angular/router';
+import { ChildProfileAutismComponent } from './child-profile-autism/child-profile-autism.component';
+import { ChildProfileTDAHComponent } from './child-profile-tdah/child-profile-tdah.component';
 
 
 const routes: Route[] = [
@@ -14,7 +16,13 @@ const routes: Route[] = [
   },
   {
     path: 'Profile/:id', component:ProfileComponent
-  }
+  },
+  {
+    path: 'Profile/autism/:id', component:ChildProfileAutismComponent
+  },
+  {
+    path: 'Profile/tdah/:id', component:ChildProfileTDAHComponent
+  },
 ]
 
 
@@ -22,7 +30,9 @@ const routes: Route[] = [
   declarations: [
     ConsultationTableComponent,
     ChildrenTableComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChildProfileAutismComponent,
+    ChildProfileTDAHComponent
   ],
   imports: [
     CommonModule,
