@@ -44,7 +44,7 @@ export class ChildProfileTDAHComponent implements OnInit{
   getDetailByEmpID(){
     this.route.params.subscribe(params => {
       const id = params['id'];
-      this.service.get(`${environment.url}/api/patients`, id, {
+      this.service.get(this.type_user==='doctor'? `${environment.url}/api/patients/details`:`${environment.url}/api/patients`, id, {
         headers: {
             Authorization: `Bearer ${this.token}`}
           }).subscribe(

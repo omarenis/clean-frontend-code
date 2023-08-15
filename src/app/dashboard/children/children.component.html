@@ -32,6 +32,8 @@
                   data-bs-target="#nav-autism" type="button" role="tab" aria-controls="nav-autism"(click)="type_user==='parent'?getautiste():getautistics()"
                   aria-selected="false">إختبارات التوحد
           </button>
+          <button *ngIf="type_user==='parent'" class="nav-link " id="nav-intell_test-tab"  data-bs-toggle="tab" data-bs-target="#nav-intell_test" type="button" role="tab" aria-controls="nav-intell_test" aria-selected="false">إختبارات  مهارات الذكاء <i class="bi bi-lock"></i></button>
+
         </div>
       </nav>
       <div class=" mt-2">
@@ -166,6 +168,89 @@
     </div>
   </div>
 </div>
+<div class=" tab-pane fade " id="nav-intell_test" role="tabpanel" aria-labelledby="nav-intell_test-tab" >
+  <div style="filter: blur(2.5px);">
+      <div class="addchild d-flex justify-content-end mb-2" >
+        <button  class=" btnaddchild d-flex justify-content-center py-1">اضافة طفل <i class="bi bi-person-plus"></i></button>
+      </div>
+
+
+  <div class=" detailschild " >
+      <div   class="detailchild card d-flex flex-row flex-nowrap">
+        <div class="profilephoto col-1">
+        <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="" >
+      </div>
+
+          <div class="col-3">
+            <p class="head">الإسم و اللقب</p>
+          <p class="underhead">nom et prénom</p>
+        </div>
+        <div class="col-3">
+          <p class="head">تاريخ الولادة</p>
+          <p class="underhead">0000-00-00</p>
+        </div>
+        <div class="col-3">
+          <p class="head">مهارة الطفل</p>
+          <p class="underhead">الذكاء اللغوي</p>
+        </div>
+
+          <div class=" col-2 d-flex justify-content-end" ><i style="  font-size: 25px;    align-items: center;cursor: pointer;
+            display: flex;" class="bi bi-person-fill-gear"></i>
+            </div>
+        </div>
+        <div   class="detailchild card d-flex flex-row flex-nowrap">
+          <div class="profilephoto col-1">
+          <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="" >
+        </div>
+
+            <div class="col-3">
+              <p class="head">الإسم و اللقب</p>
+            <p class="underhead">nom et prénom</p>
+          </div>
+          <div class="col-3">
+            <p class="head">تاريخ الولادة</p>
+            <p class="underhead">0000-00-00</p>
+          </div>
+          <div class="col-3">
+            <p class="head">مهارة الطفل</p>
+            <p class="underhead">الذكاء اللغوي</p>
+          </div>
+
+            <div class=" col-2 d-flex justify-content-end" ><i style="  font-size: 25px;    align-items: center;cursor: pointer;
+              display: flex;" class="bi bi-person-fill-gear"></i>
+              </div>
+          </div>
+          <div   class="detailchild card d-flex flex-row flex-nowrap">
+            <div class="profilephoto col-1">
+            <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="" >
+          </div>
+
+              <div class="col-3">
+                <p class="head">الإسم و اللقب</p>
+              <p class="underhead">nom et prénom</p>
+            </div>
+            <div class="col-3">
+              <p class="head">تاريخ الولادة</p>
+              <p class="underhead">0000-00-00</p>
+            </div>
+            <div class="col-3">
+              <p class="head">مهارة الطفل</p>
+              <p class="underhead">الذكاء اللغوي</p>
+            </div>
+
+              <div class=" col-2 d-flex justify-content-end" ><i style="  font-size: 25px;    align-items: center;cursor: pointer;
+                display: flex;" class="bi bi-person-fill-gear"></i>
+                </div>
+            </div>
+
+
+  </div>
+  </div>
+  <div class="bg-text">
+    <h1>هذا الإختبار سيكون متاح قريبا في المنصة <i class="bi bi-hourglass-split"></i></h1>
+  </div>
+  </div>
+
 
 
       </div>
