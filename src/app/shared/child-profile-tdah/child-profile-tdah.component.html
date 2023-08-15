@@ -12,7 +12,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-8 ">
+          <div class=" ">
             <div class="mb-3">
               <div class="card-body">
                 <div class="row">
@@ -29,7 +29,7 @@
                     <h6 class="mb-0">اللقب</h6>
                   </div>
                   <div class="col-sm-3 text-secondary">
-                    {{patient.family_name}}
+                    {{patient.Patient.family_name}}
                       </div>
                 </div>
                 <hr>
@@ -38,7 +38,7 @@
                     <h6 class="mb-0 ">تاريخ الولادة</h6>
                   </div>
                   <div class="col-sm-3 text-secondary">
-                    {{patient.birthdate}}
+                    {{patient.Patient.birthdate}}
                   </div>
                 </div>
                 <hr>
@@ -71,17 +71,9 @@
         </div>
 <ng-container *ngIf="type_user==='doctor'">
 
-  <div class="row">
-    <div class="col-sm-4 text-justify">
-      <h6 class="mb-0">رقم الهاتف</h6>
-    </div>
-    <div class="col-sm-3 text-secondary">
-      {{patient.Patient.parent.telephone}}
-    </div>
-  </div>
-  <hr>
+
   <p class="d-flex justify-content-center" style="color: #588ADB;">نتيجة الأولياء</p>
-  <div class="question d-flex justify-content-center">
+  <div class="question d-flex  justify-content-center">
 
     <div class="card d-flex flex-column bd-highlight m-3">
       <div class="p-2 bd-highlight text-center"style="color: #315a9c; font-size: large;">Anxiété : {{patient.AnxityTroubleParent.score}}</div>
@@ -218,13 +210,69 @@
   </div>
 
   <div class="row">
+<ng-container *ngIf="superdoctor==='true'">
+    <div *ngIf="!displayaddsupervise" class="edit col-sm-12">
+      <button data-bs-toggle="modal" data-bs-target="#formAddUser">تعيين طبيب</button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="superdoctor==='false'">
+    <div class="row">
+      <div class="edit col-sm-12">
+        <button *ngIf="patient.Patient.is_consulted===false" routerLink="/dashboard/consultation" (click)="saveItem(patient)">حجز موعد </button>
 
-    <!-- <div *ngIf="!displayaddsupervise" class="edit col-sm-12">
-      <button [routerLink]='["/addSupervise/",patient.Patient.id]'>تعيين طبيب</button>
-    </div> -->
-
+      </div>
+    </div>
+  </ng-container>
   </div>
 </ng-container>
       </div>
   </div>
 
+  <form  #addUserForm aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="formAddUser"
+  tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header w-100">
+        <h5 class="modal-title text-center text-danger" id="exampleModalLabel"></h5>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>إسم ولقب الطبيب</th>
+                <th>رقم الطبيب</th>
+                <th>الولاية</th>
+                <th>تخصص</th>
+                <th>تعيين الطبيب</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let doctor of doctors; let i = index">
+              <tr >
+                <td>
+                 {{ doctor.name+' '+doctor.profile.family_name}}
+                </td>
+                <td>
+                  {{ doctor.telephone}}
+                </td>
+                <td>
+                  {{ doctor.localisation.state}}
+
+                </td>
+                <td>
+                  {{ doctor.profile.speciality}}
+                <td>
+                  <input type="button" class="btn btn-primary" value=" تعيين" (click)="addSupervise(doctor.id,$event)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  </form>

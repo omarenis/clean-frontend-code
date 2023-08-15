@@ -36,7 +36,11 @@
                         </div>
                       </div>
                     </ng-container>
-
+<ng-container *ngIf="type_user==='doctor'">
+  <div class="d-flex justify-content-center mb-2">
+    <input routerLink="/dashboard/consultation" (click)="save_patient_to_appointement(autiste)" type="button" class="btn btn-outline-primary ms-1" value="حجز موعد ">
+  </div>
+</ng-container>
           </div>
         </div>
 

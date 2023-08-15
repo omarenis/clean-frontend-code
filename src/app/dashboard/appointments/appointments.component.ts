@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Appointment } from 'src/app/models/appointment';
 import { DynamicTableCrud } from 'src/app/services/dynamic-table';
 import { AbstractRestService } from 'src/app/services/genericservice';
@@ -14,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AppointmentsComponent extends DynamicTableCrud<Appointment> implements OnInit{
   constructor( protected override service: AbstractRestService<Appointment>,
-    protected override secureStorageService: SecureStorageService) {
+    protected override secureStorageService: SecureStorageService ,private route:Router) {
     super(service, `${environment.url}/api/patients/consultations`, secureStorageService);
     }
     type_user!:any
@@ -41,23 +42,44 @@ if (access) {
       this.getconsultationautisme()
     }
 
-
 const patientdata = localStorage.getItem('patient');
 this.patientelement = patientdata
 if (patientdata !== null) {
 const patientselected = JSON.parse(patientdata);
 this.patient=patientselected
-console.log(this.patient.name)
 
 }
    }
    getconsultationTdah(){
-    this.service.list(`${environment.url}/api/patients/consultations`,{
-      headers: this.options.headers
-    }).subscribe((response) => {
-      this.consultation=response
-      this.numberItems = this.consultation.length;
-  })
+    if(this.type_user==='doctor'){
+      const access = localStorage.getItem('access');
+      if (access) {
+        this.options = {
+            headers: {
+                Authorization: `Bearer ${this.secureStorageService.getToken(access)}`
+            },
+            params: null
+        };
+      }
+
+        this.service.list(`${environment.url}/api/patients/consultations`, {
+          headers: this.options.headers
+        }).subscribe((response) => {
+
+        this.consultations= response
+        console.log("🚀 ~ file: appointments.component.ts:69 ~ AppointmentsComponent ~ getconsultationTdah ~ this.consultations:", this.consultations)
+
+        });
+    }
+    else{
+      this.service.list(`${environment.url}/api/patients/consultations`,{
+        headers: this.options.headers
+      }).subscribe((response) => {
+        this.consultation=response
+        this.numberItems = this.consultation.length;
+    })
+    }
+
    }
    autisteconsultations!:any
    getconsultationautisme(){
@@ -79,20 +101,19 @@ console.log(this.patient.name)
    }
    }
    action !: string;
-   submit(){
+   createconsultation(){
      console.log('daaateeee',this.FormGroup.value.date ,this.patient.id)
  if(this.patient.score_mother===undefined){
    console.log("tdah")
 
    this.service.create(`${environment.url}/api/patients/consultations`,  {
      date: this.FormGroup.value.date,
-     patient: this.patient.Patient.id
+     patient: this.patient.id
 
    }, {
      headers: this.options.headers
  }).subscribe((response) => {
   // this.toast.success({detail:"تمت العملية بنجاح",summary:'تم تعيين الموعد بنجاح',duration:5000});
-
        const userId = localStorage.getItem('userId');
        const access = localStorage.getItem('access');
        const refresh = localStorage.getItem('refresh');
@@ -114,6 +135,8 @@ console.log(this.patient.name)
            localStorage.setItem('lastLogin', lastLogin);
            localStorage.setItem('id', id);
        }
+       this.route.navigate(['/dashboard/Children/all_patient'])
+
    });
 
  }
@@ -146,6 +169,7 @@ console.log(this.patient.name)
            localStorage.setItem('is_super_doctor', is_super_doctor);
            localStorage.setItem('type_user', type_user);
        }
+       this.route.navigate(['/dashboard/Children/all_patient'])
    });
 
  }
@@ -153,6 +177,11 @@ console.log(this.patient.name)
      delete_consultation(id:number){
       this.service.delete(`${environment.url}/api/autisme/consultations`,id, this.options).subscribe((response) => {
       this.getconsultationautisme()
+        });
+     }
+     delete_consultation_tdah(id:number){
+      this.service.delete(`${environment.url}/api/patients/consultations`,id, this.options).subscribe((response) => {
+      this.getconsultationTdah()
         });
      }
 

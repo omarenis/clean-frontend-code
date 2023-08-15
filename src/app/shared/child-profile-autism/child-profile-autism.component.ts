@@ -133,6 +133,8 @@ getquestionautiste(){
 
   save_patient_to_appointement(patient : Patient) {
     localStorage.setItem('patient', JSON.stringify(patient));
+    console.log("🚀 ~ file: child-profile-autism.component.ts:136 ~ ChildProfileAutismComponent ~ save_patient_to_appointement ~ patient:", patient)
+
     this.router.navigate(['/dashboard/consultation']);
      }
 }
