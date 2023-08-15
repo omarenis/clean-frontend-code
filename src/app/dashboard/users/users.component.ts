@@ -22,12 +22,15 @@ export class UsersComponent extends DynamicTableCrud<Person> implements OnInit {
   typeDoctorToDisplay !: string;
   selectedOption:string
   spinner:boolean = false
+  is_super_doctor!:any
+
   constructor(protected override service: AbstractRestService<Person>, protected override secureStorageService: SecureStorageService,
               private httpClient: HttpClient, private router: Router) {
     super(service, `${environment.url}/api/persons`, secureStorageService);
     this.selectedOption = '';
   }
   async ngOnInit(): Promise<void> {
+    this.is_super_doctor=localStorage.getItem('is_super_doctor');
     this.access = localStorage.getItem('access');
     const type_user = localStorage.getItem('type_user');
     if (type_user !== null) {

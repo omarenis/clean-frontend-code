@@ -1,3 +1,4 @@
+import { Message } from './../../models/message';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,7 +27,17 @@ numberPatients !: number;
 type_user !: string | null;
 doctors !: Person[];
 formGroup !: FormGroup;
+datasearch!:any;
+notexist!:boolean;
+loaded:boolean=false
+item!:number;
+validated !: boolean;
+error !: string;
 async ngOnInit(): Promise<void> {
+  this.error = '';
+  this.validated = true;
+
+  this.notexist=false
   this.formGroup = new FormGroup({
     login_number: new FormControl('', [Validators.required]),
 });
@@ -40,7 +51,9 @@ async ngOnInit(): Promise<void> {
           params: null,
           headers: {Authorization: `Bearer ${this.secureStorageService.getToken(this.access)}`}
       };
-      await this.getData();
+      if(type_user==='parent'){
+        await this.getData();
+      }
 
   }
 }
@@ -54,8 +67,37 @@ console.log('result', this.result)
 }
 
 saveItem(patient : Patient) {
-  console.log('idpatient',patient)
-localStorage.setItem('patient', JSON.stringify(patient));
- this.router.navigate([`/question/${localStorage.getItem('type_user')}/1`]);
+  if(this.type_user==='parent'){
+    localStorage.setItem('patient', JSON.stringify(patient));
+    this.router.navigate([`/public/Tdah_question/${localStorage.getItem('type_user')}/1`]);
+  }
+  else{
+    if(patient.score_teacher!=0){
+      console.log("error")
+     // this.toast.error({detail:"خطأ في التسجيل",summary:'تم إدخال الطفل بواسطة مربي من قبل',duration:5000});
+
+    }else{
+
+      localStorage.setItem('patient', JSON.stringify(patient));
+      this.router.navigate([`/public/Tdah_question/${localStorage.getItem('type_user')}/1`]);
+    }
+  }
+
 }
+
+ submit(){
+const login_number=  this.formGroup.value.login_number
+  this.service.get(`${environment.url}/api/patients/find`, login_number).subscribe({ next:res => {
+          this.datasearch = res
+          this.item= this.datasearch.patients.length
+          this.loaded=true
+          this.validated = true;
+        }, error: (err) => {
+          this.validated = false;
+          this.error=err.error.message;
+          this.loaded=false
+          this.datasearch=[]
+}
+ });
+  }
 }

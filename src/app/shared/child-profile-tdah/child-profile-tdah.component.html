@@ -1,1 +1,75 @@
-<p>child-profile-tdah works!</p>
+<div class="container">
+  <div class="back d-flex justify-content-end ">
+    <button [routerLink]='type_user==="doctor"?["/dashboard/Children/all_patient"]:["/dashboard/Children"]' >رجوع<i class="bi bi-arrow-return-left"></i></button>
+  </div>
+  <div  class="main-body card">
+      <h3 class="fw-normal mb-4  text-center" style="color: #588ADB;">الملف</h3>
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3">
+            <div class="">
+              <div class="card-body">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 ">
+            <div class="mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 text-justify">
+                    <h6 class="mb-0">الإسم</h6>
+                  </div>
+                  <div class="col-md-6 text-secondary">
+                    {{patient.name}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row ">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0">اللقب</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{patient.family_name}}
+                      </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0 ">تاريخ الولادة</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{patient.birthdate}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0">الإسم واللقب الولي</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{parentpatient.name+' '+parentpatient.profile.family_name}}
+                  </div>
+                </div>
+                <hr>
+
+
+                <div class="row">
+                  <div class="col-sm-4 text-justify">
+                    <h6 class="mb-0">رقم الهاتف</h6>
+                  </div>
+                  <div class="col-sm-3 text-secondary">
+                    {{parentpatient.telephone}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+

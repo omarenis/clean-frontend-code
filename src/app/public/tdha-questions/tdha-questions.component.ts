@@ -242,7 +242,7 @@ export class TdhaQuestionsComponent implements OnInit {
             if (this.type_user == 'parent') {
               await this.router.navigate(['/dashboard/Children']);
             } else {
-              await this.router.navigate(['/studentlist']);
+              await this.router.navigate(['/dashboard/Children']);
 
             }
           }

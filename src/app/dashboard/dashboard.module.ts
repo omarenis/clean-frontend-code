@@ -24,6 +24,10 @@ const routes: Route[] = [
   {
     path: 'consultation', component: AppointmentsComponent
   },
+  {
+    path: 'Children/:state', component: ChildrenComponent
+  },
+
 ]
 
 

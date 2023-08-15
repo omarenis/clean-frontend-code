@@ -60,9 +60,7 @@ else{
   localStorage.setItem('type_parent','father')
 }
 this.router.navigate([`/public/Autistic_question/1`]);
-    }
-
-
+}
 doctors:any
 getdoctors(){
   const access = localStorage.getItem('access');

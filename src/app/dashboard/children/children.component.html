@@ -1,4 +1,4 @@
-<ng-container *ngIf="type_user==='parent'|| (type_user==='doctor' && type_user==='doctor')">
+<ng-container *ngIf="type_user==='parent'|| (type_user==='doctor' && is_super_doctor==='false')">
 <div class="continue">
   <div class="d-flex ">
     <div class="listchild container-fluid d-flex justify-content-center ">
@@ -7,19 +7,29 @@
     </div>
   </div>
   <div class="navandlistchild  row ">
+    <ng-container *ngIf="type_user==='parent'">
     <div class="navcard card ">
       <a routerLink="/dashboard/Children" class="nav-link"><i class="bi bi-list-nested"></i>قائمة الاطفال</a>
-      <a *ngIf="type_user==='parent'" routerLink="/dashboard/consultation" class="nav-link"><i class="bi bi-calendar-event"></i> جدول المواعيد</a>
+      <a  routerLink="/dashboard/consultation" class="nav-link"><i class="bi bi-calendar-event"></i> جدول المواعيد</a>
     </div>
+  </ng-container>
+  <ng-container *ngIf=" type_user==='doctor' && is_super_doctor==='false'">
+    <div class="navcard card " >
+      <a routerLink="/dashboard/Children/all_patient" class="nav-link"><i class="bi bi-person-lines-fill"></i>جميع الأطفال</a>
+      <a routerLink="/dashboard/Children/waited_patient" class="nav-link"><i class="bi bi-person-fill-exclamation"></i>قائمة الانتظار <span class="badge rounded-pill badge-notification bg-danger">{{numberPatients}}</span></a>
+      <a routerLink="/dashboard/Children/seted_patient" class="nav-link"><i class="bi bi-person-fill-check"></i>أطفال تم تعيينهم</a>
+      <a routerLink="/dashboard/consultation" class="nav-link"><i class="bi bi-calendar3"></i>جدول المواعيد</a>
+</div>
+  </ng-container>
     <div class="cardchildliste card card-body ">
       <nav>
         <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
           <button class="nav-link active" id="nav-tdah-tab"data-bs-toggle="tab"
-                  data-bs-target="#nav-tdah" type="button" role="tab" aria-controls="nav-tdah" aria-selected="true" (click)="getTDAH()">
+                  data-bs-target="#nav-tdah" type="button" role="tab" aria-controls="nav-tdah" aria-selected="true" (click)="type_user==='parent'?getTDAH():get_patient_tdah_to_doctor()">
             إختبارات اضطراب تشتت الانتباه و فرط الحركة
           </button>
           <button class="nav-link" id="nav-profile-tab"  data-bs-toggle="tab"
-                  data-bs-target="#nav-autism" type="button" role="tab" aria-controls="nav-autism"  (click)="getautiste()"
+                  data-bs-target="#nav-autism" type="button" role="tab" aria-controls="nav-autism"(click)="type_user==='parent'?getautiste():getautistics()"
                   aria-selected="false">إختبارات التوحد
           </button>
         </div>
@@ -27,10 +37,12 @@
       <div class=" mt-2">
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-tdah" role="tabpanel" aria-labelledby="nav-tdah-tab">
+            <ng-container *ngIf="type_user==='parent'">
             <div class="addchild d-flex justify-content-end mb-2">
               <button [routerLink]='["/public/choose_child" ]'class=" btnaddchild d-flex justify-content-center py-1">اضافة طفل <i
                 class="bi bi-person-plus"></i></button>
             </div>
+          </ng-container>
             <div class="detailschild ">
               <div *ngIf="!spinner" class="d-flex justify-content-center align-items-center mt-5">
                 <div class="spinner-grow text-primary" role="status">
@@ -65,6 +77,7 @@
                 </div>
                 <div class="col-4">
                   <div class="col-4 d-flex justify-content-end align-items-center">
+                    <ng-container *ngIf="type_user==='parent'">
                     <button class="btn btn-link" >
                       <i *ngIf="patient.saved==false"
                          class="bi bi-person-exclamation text-danger" style=" font-size: 30px; cursor: pointer;"></i>
@@ -74,7 +87,14 @@
                       <i *ngIf=" patient.supervisor !== null &&  patient.sick === true " class="bi bi-person-check text-success"
                          style=" font-size: 30px; cursor: pointer;"></i>
                     </button>
+                  </ng-container>
+                    <ng-container *ngIf="type_user==='doctor'">
+                      <div  [routerLink]='["/shared/Profile/autism",patient.id]'class=" d-flex align-items-center justify-content-end " ><i style="  font-size: 25px;    align-items: center;cursor: pointer;
+                        display: flex;" class="bi bi-person-fill-gear"></i>
+                        </div>
+                        </ng-container>
                   </div>
+
                 </div>
               </div>
 
@@ -84,10 +104,12 @@
 <!--autism-->
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show " id="nav-autism" role="tabpanel" aria-labelledby="nav-autism-tab">
+    <ng-container *ngIf="type_user==='parent'">
     <div class="addchild d-flex justify-content-end mb-2">
       <button [routerLink]='["/public/info_test/Autism"]' class=" btnaddchild d-flex justify-content-center py-1">اضافة طفل <i
         class="bi bi-person-plus"></i></button>
     </div>
+  </ng-container>
     <div class="detailschild ">
       <div *ngIf="!spinner" class="d-flex justify-content-center align-items-center mt-5">
         <div class="spinner-grow text-primary" role="status">
@@ -121,6 +143,7 @@
           <p class="underhead">{{patient.birthdate }}</p>
         </div>
         <div class="col-4 ">
+          <ng-container *ngIf="type_user==='parent'" >
           <div class=" d-flex align-items-center justify-content-end">
             <a class="btn btn-link" [routerLink]='["/shared/Profile/autism",patient.id]'>
               <i *ngIf="patient.saved==false"
@@ -132,6 +155,12 @@
                  style=" font-size: 30px; cursor: pointer;"></i>
             </a>
           </div>
+        </ng-container>
+        <ng-container *ngIf="type_user==='doctor'">
+        <div  [routerLink]='["/shared/Profile/autism",patient.id]'class=" d-flex align-items-center justify-content-end " ><i style="  font-size: 25px;    align-items: center;cursor: pointer;
+          display: flex;" class="bi bi-person-fill-gear"></i>
+          </div>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -143,4 +172,99 @@
     </div>
   </div>
 </div>
+</ng-container>
+
+
+<ng-container *ngIf="type_user==='teacher' || (type_user==='doctor' && is_super_doctor==='true')">
+
+<div class="continue">
+  <div class="d-flex ">
+        <ng-container *ngIf="type_user==='teacher'">
+            <div class="listchild container-fluid d-flex justify-content-center " >
+              <img class="espacekids img-fluid" src="assets/img/espace kids final.png">
+              <h3 >قائمة <span style="color: #57CFDE;">التلاميذ  </span></h3>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="(type_user==='doctor' && is_super_doctor==='true')">
+          <div class="listchild container-fluid d-flex justify-content-center " >
+            <img class="espacekids img-fluid" src="assets/img/espace kids final.png">
+            <h3 >قائمة <span style="color: #57CFDE;">الأطفال  </span></h3>
+        </div>
+        </ng-container>
+        </div>
+  <div class="navandlistchild  row ">
+    <ng-container *ngIf="type_user==='teacher'" >
+          <div class="navcard card " >
+            <a routerLink="/dashboard/Children" class="nav-link"><i class="bi bi-list-nested"></i>قائمة التلاميذ</a>
+          </div>
+    </ng-container>
+    <ng-container *ngIf="(type_user==='doctor' && is_super_doctor==='true')">
+      <div class="navcard card">
+      <a routerLink="/dashboard/Users" class="nav-link"><i class="bi bi-person-lines-fill"></i>قائمة الأطباء</a>
+    <p class="nav-link mt-4 d-flex justify-content-center">فضاء الاطفال :</p>
+    <a routerLink="/dashboard/Children/all_patient" class="nav-link"><i class="bi bi-person-lines-fill"></i>جميع الأطفال</a>
+    <a routerLink="/dashboard/Children/waited_patient" class="nav-link"><i class="bi bi-list"></i>قائمة الانتظار  <span *ngIf="notification!=0" class="badge rounded-pill badge-notification bg-danger">{{notification}}</span></a>
+    <a routerLink="/dashboard/Children/seted_patient" class="nav-link"><i class="bi bi-list-check"></i>أطفال تم تعيينهم</a>
+    </div>
+    </ng-container>
+
+      <div class="cardchildliste card card-body ">
+        <ng-container *ngIf="type_user==='teacher'"  >
+        <div class="addchild d-flex justify-content-end">
+        <button routerLink="/public/choose_child"  class=" btnaddchild d-flex justify-content-center py-1">اضافة تلميذ <i class="bi bi-person-plus"></i></button>
+      </div>
+    </ng-container>
+      <div class="detailschild ">
+        <div *ngIf="!spinner" class="d-flex justify-content-center align-items-center">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div><div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div><div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div><div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <ng-container *ngIf="type_user==='teacher'" >
+          <div class="d-flex justify-content-center mt-5 text-danger align-items-center">
+            <p  *ngIf="result.length === 0">ليس هناك أي أطفال
+              مسجلين إضغط على إضافة طفل لإدخال طفل جديد</p>
+          </div>
+          </ng-container>
+
+        <div *ngFor="let patient of result"  class="detailchild card d-flex flex-row flex-nowrap">
+          <div class="profilephoto col-1">
+          <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="" >
+        </div>
+
+            <div class="col-2">
+              <p class="head">الإسم و اللقب</p>
+      <p class="underhead">{{patient.name +' '+ patient.family_name }}</p>
+          </div>
+          <div class="col-2">
+            <p class="head">تاريخ الولادة</p>
+            <p class="underhead">{{patient.birthdate}}</p>
+          </div>
+          <div class="col-2">
+            <p class="head">اسم ولقب الولي</p>
+            <p class="underhead">{{patient.parent?.name+' '+patient.parent?.profile?.family_name }}</p>
+
+          </div>
+          <div class="col-2">
+            <p class="head">رقم هاتف الوالي</p>
+            <p class="underhead">{{patient.parent?.telephone}}</p>
+
+          </div>
+
+          <div [routerLink]='["/shared/Profile/tdah",patient.id]' class=" col-3 d-flex justify-content-end" ><i style="  font-size: 25px;    align-items: center;cursor: pointer;
+            display: flex;" class="bi bi-person-fill-gear"></i></div>
+        </div>
+
+  </div>
+
+  </div>
+      </div>
+    </div>
+
 </ng-container>

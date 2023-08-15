@@ -1,11 +1,9 @@
+
 .continue{
-  margin-top: 10px;
   margin-left: 20px;
   margin-right: 20px;
 }
-
 /*part 2*/
-
 .head{
   font-size: small;
   color: #245977;
@@ -20,12 +18,11 @@
 
 
 
-.desc{
- width: 12rem;
- border-radius: 15px;
- padding: 10px 15px;
- margin-left: 15px;
-}
+
+
+
+
+
 
 .listchild{
   background: rgb(67,167,223);
@@ -50,6 +47,7 @@ flex-wrap: nowrap;
 }
 
 .navcard{
+
   width: 10.7rem;
   border-radius: 15px;
   margin-right: 15px;
@@ -84,16 +82,8 @@ a:focus{
   margin-right: 140px;
   color: #245977;
 }
-.headtable  p.date {
-  margin-right: 140px;
-  color: #245977;
-}
-.headtable  p.dname {
-  margin-right: 140px;
-  color: #245977;
-}
-.headtable  p.dnum {
-  margin-right: 140px;
+.headtable  p.birth {
+  margin-right: 240px;
   color: #245977;
 }
 .cardchildliste{
@@ -102,16 +92,15 @@ a:focus{
   margin-right: 15px;
   margin-left: 15px;
 }
-.cardchildliste button{
+.cardchildliste .addchild button{
   width: 150px;
   border-radius: 15px;
  border: none;
   color: white;
   background: #43A7DF;
-
 transition: 0.3s;
 }
-.cardchildliste button:hover{
+.cardchildliste .addchild  button:hover{
 background: #3178a1;
 
 }
@@ -132,24 +121,19 @@ margin-top: 10px;
 .detailchild .text p.cname{
 font-size: small;
 margin-right: 90px;
+margin-left: 170px;
 }
-.detailchild .text p.dcmeeting{
+.detailchild .text p.cbirth{
   font-size: small;
-  margin-right: 160px;
+  margin-right: 90px;
+  margin-left: 170px;
   }
-  .detailchild .text p.dcname{
-    font-size: small;
-    margin-right: 180px;
-    }
-
-    .detailchild .text p.dcnum{
-      font-size: small;
-      margin-right:  230px;
-      }
-
-
+.detailchild .manageacount i{
+  margin-left: 30px;
+  font-size: 30px;
+}
 .detailschild {
-  height: 390px;
+  height: 350px;
   overflow-y: scroll;
 }
 
@@ -167,12 +151,6 @@ margin-right: 90px;
 
     margin-right: 10px;
   }
-  .desc{
-    width: 12rem;
-    border-radius: 15px;
-    padding: 10px 15px;
-    margin-left: 15px;
-   }
 
   .navandlistchild{
     margin-top: 15px;
@@ -220,16 +198,8 @@ width: 165px;
     margin-right: 60px;
     color: #245977;
   }
-  .headtable  p.date {
-    margin-right: 50px;
-    color: #245977;
-  }
-  .headtable  p.dname{
-    margin-right: 50px;
-    color: #245977;
-  }
-  .headtable  p.dnum{
-    margin-right: 50px;
+  .headtable  p.birth {
+    margin-right: 23px;
     color: #245977;
   }
   .detailchild{
@@ -249,18 +219,11 @@ width: 165px;
     margin-right: 10px;
     margin-left: 0px;
     }
-    .detailchild .text p.dcmeeting{
+    .detailchild .text p.cbirth{
       font-size: small;
-      margin-right: 50px;
+      margin-right: 25px;
+      margin-left: 0px;
       }
-      .detailchild .text p.dcname{
-        font-size: small;
-        margin-right: 80px;
-        }
-        .detailchild .text p.dcnum{
-          font-size: small;
-          margin-right: 100px;
-          }
     .detailchild .manageacount i{
 
       margin-left: 0px;
@@ -271,123 +234,7 @@ width: 165px;
       overflow-y: scroll;
     }
 }
-@media only screen and (max-width: 800px) {
-  p{
-    font-size: 13px;
-  }
-  body{
-    font-family: 'Droid Arabic Kufi', sans-serif;
-  }
 
-
-  .listchild h3{
-    margin-top: 55px;
-
-    margin-right: 10px;
-  }
-  .desc{
-    width: 12rem;
-    border-radius: 15px;
-    padding: 10px 15px;
-    margin-left: 15px;
-   }
-
-  .navandlistchild{
-    margin-top: 15px;
-    display: flex;
-    flex-direction: row;
-
-
-    }
-  .navcard{
-width: 150px;
-    border-radius: 15px;
-    display: flex;
-    margin-left: auto;
-  margin-right: 15PX;
-  }
-  a:focus{
-    color: inherit;
-    text-decoration: inherit;
-  }
-  .navcard a{
-    color: #757575;
-   transition: all 300ms ease;
-  }
-  .navcard a .bi{
-    color: #757575;
-    margin-left: 5px;
-  }
-
-  .navcard a:hover{
-    margin-right: 0px;
-    color: #245977;
-  }
-
-  .cardchildliste{
-
-   margin-left: 15PX;
-
-  }
-  .headtable {
-    display: none;
-    margin-top: 15px;
-    margin-bottom: -10px;
-  }
-  .headtable  p.name {
-    margin-right: 60px;
-    color: #245977;
-  }
-  .headtable  p.date {
-    margin-right: 50px;
-    color: #245977;
-  }
-  .headtable  p.dname{
-    display: none;
-
-  }
-  .headtable  p.dnum{
-    display: none;
-
-  }
-  .detailchild{
-    border-radius: 15px;
-    margin-bottom: 5px;
-  }
-
-  .detailchild img{
-    height: 40px;
-    width: 40px;
-  }
-  .detailchild .text{
-    margin-top: 10px;
-    }
-    .detailchild .text p.cname{
-    font-size: small;
-    margin-right: 10px;
-    margin-left: 0px;
-    }
-    .detailchild .text p.dcmeeting{
-      font-size: small;
-      margin-right: 50px;
-      }
-      .detailchild .text p.dcname{
-        display: none;
-
-        }
-        .detailchild .text p.dcnum{
-         display: none;
-          }
-    .detailchild .manageacount i{
-
-      margin-left: 0px;
-      font-size: 25px;
-    }
-    .detailschild {
-      height: 250px;
-      overflow-y: scroll;
-    }
-}
 @media only screen and (max-width: 600px) {
   p{
     font-size: 13px;
@@ -498,4 +345,7 @@ width: 150px;
       overflow-y: scroll;
     }
 }
+
+
+
 

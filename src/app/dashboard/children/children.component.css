@@ -48,7 +48,7 @@ flex-wrap: nowrap;
 
 .navcard{
 
-  width: 10.7rem;
+  width: 200px;
   border-radius: 15px;
   margin-right: 15px;
   display: flex;
@@ -135,6 +135,29 @@ margin-left: 170px;
 .detailschild {
   height: 350px;
   overflow-y: scroll;
+}
+p{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+a:focus{
+  color: inherit;
+  text-decoration: inherit;
+}
+ a{
+  display: flex;
+  color: #245977;
+ margin: 10px 0px;
+ transition: all 300ms ease;
+}
+ a .bi{
+  margin-left: 5px;
+  color: #245977;
+}
+
+ a:hover{
+  margin-right: 5px;
 }
 
 @media only screen and (max-width: 1000px) {

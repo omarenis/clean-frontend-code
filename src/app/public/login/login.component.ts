@@ -47,11 +47,14 @@ submit($event: Event): void{
       saveDataToLocalhost(response.profile);
 
        let url: string;
-      if (response.type_user == 'parent')
+      if (response.type_user == 'parent' || response.type_user == 'teacher' )
       {
           url = '/dashboard/Children';
       }
-       else if (response.profile.is_super_doctor == true)
+      else if(response.type_user == 'doctor' && response.profile.is_super_doctor === false ){
+        url = '/dashboard/Children/all_patient';
+      }
+       else if ( response.profile.is_super_doctor === true)
       {
           url = '/dashboard/Users';
       }
@@ -59,6 +62,7 @@ submit($event: Event): void{
       {
           url = '/dashboard/Users';
       }
+
       else
       {
           url = '/dashboard/Users';
@@ -96,6 +100,7 @@ this.date()
       error: (err) => {
         this.validated = false;
         this.error=err.error.message;
+        console.log("🚀 ~ file: login.component.ts:99 ~ LoginComponent ~ this.loginSignupService.login ~ this.error:", this.error)
       },
 
     })

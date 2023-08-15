@@ -39,14 +39,22 @@
 </ng-container>
 
   <div class="navandlistchild row ">
-    <ng-container >
-    <div class="navcard card " *ngIf="type_user==='admin'">
+    <ng-container *ngIf="type_user==='admin'">
+    <div class="navcard card " >
       <a (click)="displaysuperdoctor()" class="nav-link"><i class="bi bi-person-lines-fill"></i>قائمة الأطباء الأوائل</a>
       <a (click)="displaykindergarten()" class="nav-link"><i class="bi bi-list"></i> قائمة الروضات</a>
       <a (click)="displayUser()" class="nav-link"><i class="bi bi-people-fill"></i>مستعملي المنصة</a>
     </div>
   </ng-container>
-
+  <ng-container *ngIf="(type_user==='doctor' && is_super_doctor==='true')">
+    <div class="navcard card">
+    <a routerLink="/dashboard/Users" class="nav-link"><i class="bi bi-person-lines-fill"></i>قائمة الأطباء</a>
+  <p class="nav-link mt-4 d-flex justify-content-center">فضاء الاطفال :</p>
+  <a routerLink="/dashboard/Children/all_patient" class="nav-link"><i class="bi bi-person-lines-fill"></i>جميع الأطفال</a>
+  <a routerLink="/dashboard/Children/waited_patient" class="nav-link"><i class="bi bi-list"></i>قائمة الانتظار  <span *ngIf="numberItems!=0" class="badge rounded-pill badge-notification bg-danger">{{numberItems}}</span></a>
+  <a routerLink="/dashboard/Children/seted_patient" class="nav-link"><i class="bi bi-list-check"></i>أطفال تم تعيينهم</a>
+  </div>
+  </ng-container>
     <div class="cardchildliste card card-body ">
       <ng-container *ngIf="type_user==='admin'">
       <div *ngIf="typeUsersToDisplay === 'super_doctor'" class="addchild d-flex justify-content-end">

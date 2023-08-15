@@ -27,12 +27,8 @@ margin-right: 5px;
   background: #3178a1;
 
 }
-.card{
-  padding: 20px;
-}
+
 .searchbtn button{
-  margin-top: 33px;
-  padding: 10px 5px;
   margin-right: 10px;
   background-color: #43A7DF;
   color: white ;
@@ -49,21 +45,8 @@ color: white;
 .searchbtn button i{
 margin-right: 5px;
 }
-.detailchild{
-border-radius: 15px;
-padding: 10px;
-cursor: pointer;
-}
-.detailchild img{
-height: 50px;
-width: 50px;
-border-radius: 50px;
 
-}
-.detailchild .text{
 
-margin-top: 10px;
-}
 
 
 .addchild{
@@ -82,12 +65,15 @@ transition: 0.3s;
 background: #3178a1;
 
 }
+
 .child-contain{
-  height: 350px;
+  height: 250px;
+
+}
+.child-list-contain{
+  height: 220px;
   overflow-y: scroll;
 }
-
-
 
 
 
@@ -95,14 +81,9 @@ background: #3178a1;
 .detailchild{
  width: 300px;
 }
-.addchild{
-  margin-left: -20px;
-}
+
 input[type=text] {
   width: 200px;
 }
-.searchbtn button{
-margin-left: 15px;
-display: flex;
-}
+
 }
