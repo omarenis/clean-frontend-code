@@ -114,8 +114,9 @@
 
                   </div>
 
-
               </div>
+              <p *ngIf="!validated" class="alert alert-danger">{{error}}</p>
+
                 <div class="d-flex justify-content-center">
                 <button  [disabled]="signupFormControl.invalid"  type="submit" class=" btn-light my-4 " (click)="submit()" style="background-color: #43A7DF; color: white ;border: none; height: 40px;width: 130px;border-radius: 5px;">انشاء حساب</button>
               </div>

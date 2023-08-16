@@ -14,7 +14,8 @@ export class AddChildComponent implements OnInit{
   formGroup !: FormGroup;
     validated = true;
     type_user !: string | null;
-    error !: boolean;
+    error : boolean=false;
+    errormessage:string=''
 type_test!:any
     constructor(private patientService: AbstractRestService<Patient>, private router: Router, private activeRoute: ActivatedRoute) {}
 
@@ -44,6 +45,8 @@ async submit(event: Event):Promise<void> {
 await this.ageCalculator()
 if(this.type_test === 'Tdah'){
   if (this.showAge<3 || this.showAge>17){
+    this.error=true
+    this.errormessage='هذا الإختبار موجه فقط للأطفال بين 3 و 17 سنة'
     //this.toast.error({detail:" خطأ في إدخال الطفل",summary:'هذه المنصة موجهة فقط للأطفال بين 3 و 17 سنة',duration:5000});
     }
     else{
@@ -55,6 +58,8 @@ if(this.type_test === 'Tdah'){
     }
 }else{
   if (this.showAge<1 || this.showAge>2){
+    this.error=true
+    this.errormessage='هذا الإختبار موجهفقط للأطفال بين  سنة و سنتين'
    // this.toast.error({detail:" خطأ في إدخال الطفل",summary:'هذه المنصة موجهة فقط للأطفال بين  سنة و سنتين',duration:5000});
     }
     else{

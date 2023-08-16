@@ -1408,7 +1408,7 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
   selected = false;
   passwordForm!: FormGroup;
   error !: string;
-  validated !: boolean;
+  validated : boolean =true;
   state: any = [];
   public success = false;
   public msg = '';
@@ -1496,13 +1496,15 @@ export class SignupComponent extends DynamicTableCrud<Person> implements OnInit 
           this.msg = 'ajout'
           this.test = response
 
-          await this.router.navigate(['login']);
+          await this.router.navigate(['/public/Login']);
         },
         error: (err) => {
           this.created = true
-          this.errorsignup = err.error;
+          this.validated = false;
+          this.error=err.error;
           if (this.created) {
           //  this.toast.error({detail: "خطأ في التسجيل", summary: 'هذا الحساب مسجل بالفعل', duration: 5000});
+
           }
         }
       });
