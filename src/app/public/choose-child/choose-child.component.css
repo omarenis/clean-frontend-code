@@ -1,0 +1,89 @@
+.back button {
+  background-color: #43A7DF;
+  color: white ;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+.back button:hover{
+  color: white;
+  background: #3178a1;
+}
+.back  button  i.bi{
+margin-right: 5px;
+}
+
+
+.next button {
+  background-color: #43A7DF;
+  color: white ;
+  transition: 0.3s;
+}
+.next button:hover{
+  color: white;
+  background: #3178a1;
+
+}
+
+.searchbtn button{
+  margin-right: 10px;
+  background-color: #43A7DF;
+  color: white ;
+  transition: 0.3s;
+  width: 70px;
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+}
+.searchbtn button:hover{
+background: #3178a1;
+color: white;
+}
+.searchbtn button i{
+margin-right: 5px;
+}
+
+
+
+
+.addchild{
+margin-bottom: 20px;
+}
+.addchild button{
+width: 150px;
+border-radius: 15px;
+border: none;
+color: white;
+background: #43A7DF;
+
+transition: 0.3s;
+}
+.addchild button:hover{
+background: #3178a1;
+
+}
+
+.child-contain{
+  height: 250px;
+
+}
+.child-list-contain{
+  height: 220px;
+  overflow-y: scroll;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+.detailchild{
+ width: 300px;
+}
+
+input[type=text] {
+  width: 200px;
+}
+
+}

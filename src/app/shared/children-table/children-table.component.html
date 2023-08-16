@@ -1,21 +1,23 @@
-<div *ngIf="!childrenLoaded" class="d-flex justify-content-center align-items-center mt-5">
+<div *ngIf="!spinner" class="d-flex justify-content-center align-items-center mt-5">
   <div class="spinner-grow text-primary" role="status">
-    <span class="sr-only">Loading...</span>
+    <span class="sr-only"></span>
   </div>
   <div class="spinner-grow text-primary" role="status">
-    <span class="sr-only">Loading...</span>
+    <span class="sr-only"></span>
   </div>
   <div class="spinner-grow text-primary" role="status">
-    <span class="sr-only">Loading...</span>
+    <span class="sr-only"></span>
   </div>
   <div class="spinner-grow text-primary" role="status">
-    <span class="sr-only">Loading...</span>
+    <span class="sr-only"></span>
   </div>
 </div>
-<p class="d-flex justify-content-center mt-5 text-danger  " *ngIf="children.length === 0">ليس هناك أي أطفال
-  مسجلين إضغط على إضافة طفل لإدخال طفل جديد</p>
 
-<div *ngFor="let patient of children" class="detailchild card d-flex flex-row flex-nowrap">
+<ng-container *ngIf="type_user==='parent'|| type_user==='teacher'" >
+<p class="d-flex justify-content-center mt-5 text-danger  " *ngIf="result.length === 0">ليس هناك أي أطفال
+  مسجلين إضغط على إضافة طفل لإدخال طفل جديد</p>
+</ng-container>
+<div *ngFor="let patient of result" class="detailchild card d-flex flex-row flex-nowrap">
   <div class="profilephoto col-1">
     <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="">
   </div>
@@ -27,15 +29,13 @@
     <p class="head">تاريخ الولادة</p>
     <p class="underhead">{{patient.birthdate }}</p>
   </div>
-  <div class="col-4" *ngIf="type_patients === 'autiste' ">
+  <div class="col-4">
     <div class="col-4 d-flex justify-content-end align-items-center">
-      <button class="btn btn-link" (click)="sendOperation('navigate', {
-      patientId: patient.id
-      })">
+      <button class="btn btn-link" >
         <i *ngIf="patient.saved==false"
            class="bi bi-person-exclamation text-danger" style=" font-size: 30px; cursor: pointer;"></i>
         <i *ngIf="patient.saved==true && patient.supervisor === undefined"
-           [routerLink]='["/childprofile" ,patient.id ]' class="bi bi-person-exclamation text-danger"
+           [routerLink]='["/childprofile" , patient.id ]' class="bi bi-person-exclamation text-danger"
            style=" font-size: 30px; cursor: pointer;"></i>
         <i *ngIf=" patient.supervisor !== null &&  patient.sick === true " class="bi bi-person-check text-success"
            style=" font-size: 30px; cursor: pointer;"></i>

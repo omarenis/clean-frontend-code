@@ -81,7 +81,7 @@ export class AutisticQuestionsComponent {
   allValues: { result: any; }[] = [];
 
   constructor(private questionService: FirstAutismTestService, private router: Router, private activatedRoute: ActivatedRoute,
-              private patientService: AbstractRestService<Patient>, private secureStorageService: SecureStorageService, private toast: NgToastService) {
+              private patientService: AbstractRestService<Patient>, private secureStorageService: SecureStorageService) {
   }
 
   ngOnInit(): void {
@@ -159,13 +159,13 @@ export class AutisticQuestionsComponent {
             localStorage.setItem('lastLogin', lastLogin);
 
           }
-          this.toast.success({detail: "تمت العملية بنجاح", summary: 'تمت إضافة الطفل بالنجاح', duration: 5000})
-          await this.router.navigate(['/childlist']);
+       //   this.toast.success({detail: "تمت العملية بنجاح", summary: 'تمت إضافة الطفل بالنجاح', duration: 5000})
+          await this.router.navigate(['/dashboard/Children']);
         })
       }
     } else {
       console.log('this.formGroup.value', this.formGroup.value)
-      await this.router.navigate([`/firstautismtest/${this.step + 1}`]);
+      await this.router.navigate([`/public/Autistic_question/${this.step + 1}`]);
     }
   }
 

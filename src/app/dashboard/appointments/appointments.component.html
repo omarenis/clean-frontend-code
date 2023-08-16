@@ -1,0 +1,220 @@
+
+<ng-container *ngIf="type_user==='parent'">
+<div class="continue">
+  <div class="d-flex ">
+
+            <div class="listchild container-fluid d-flex justify-content-center " >
+              <img class="espacekids img-fluid" src="assets\img\espace kids final.png">
+              <h3 >جدول <span style="color: #57CFDE;">المواعيد</span></h3>
+          </div>
+        </div>
+
+
+  <div class="navandlistchild  row ">
+          <div class="navcard card " >
+                  <a routerLink="/dashboard/Children" class="nav-link"><i class="bi bi-list-nested"></i>قائمة الاطفال</a>
+                  <a  routerLink="/meeting" class="nav-link"><i class="bi bi-calendar-event"></i> جدول المواعيد</a>
+      </div>
+      <div class="cardchildliste card card-body ">
+
+
+
+
+
+        <div class="detailschild mt-4">
+          <p class="d-flex justify-content-center mt-5 text-danger  " *ngIf="numberItems==0"> ليس هناك اي موعد</p>
+
+          <div *ngFor="let consultation of consultation" class="detailchild card d-flex flex-row flex-nowrap">
+            <div class="profilephoto col-1">
+            <img src="assets/img/pngwing.com.png" class="img-fluid rounded-circle" alt="" >
+          </div>
+
+              <div class="col-2">
+                <p class="head">الإسم و اللقب</p>
+                <p class="underhead">{{consultation.patient.name+' '+consultation.patient.family_name}}</p>
+              </div>
+            <div class="col-3">
+              <p class="head">تاريخ اﻹجتماع</p>
+              <p class="underhead">{{consultation.date}}</p>
+            </div>
+            <div class="col-3">
+              <p class="head">الإسم واللقب الطبيب</p>
+              <p class="underhead">{{consultation.doctor.name+' '+consultation.doctor.profile.family_name}}</p>
+
+            </div>
+            <div class="col-3">
+            <p class="head">رقم هاتف الطبيب</p>
+            <p class="underhead">{{consultation.doctor.telephone}}</p>
+          </div>
+          </div>
+
+    </div>
+
+
+
+  </div>
+      </div>
+
+    </div>
+  </ng-container>
+
+
+
+
+<ng-container *ngIf="type_user==='doctor'">
+  <div class="container">
+    <div class="back d-flex justify-content-end ">
+      <button routerLink="/dashboard/Children/all_patient" style="cursor: pointer;
+    margin-top: 30px;
+    background-color: #43A7DF;
+    color: white;
+    transition: 0.3s;
+    margin-bottom: 10px;
+    width: 90px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;" (click)=" clearlocalstorage()">رجوع<i class="bi bi-arrow-return-left" style="margin-right: 5px;"></i></button>
+    </div>
+
+
+
+    <div class=" d-flex justify-content-between mb-4">
+      <div class="d-flex justify-content-center ">
+      <h3 > جدول مواعيد إختبارات اضطراب تشتت الانتباه و فرط الحركة</h3>
+      </div>
+      <button class="btn btn-primary float-end"data-bs-target="#formAddUser"
+    data-bs-toggle="modal" *ngIf="patient!=undefined "> إضافة موعد </button>
+
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>اسم و لقب الطفل</th>
+            <th>اسم و لقب الولي</th>
+            <th>رقم هاتف الولي</th>
+            <th>تاريخ الموعد</th>
+            <th>حذف الموعد</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let consultation of consultations; let i = index">
+          <tr >
+            <td>
+             {{ consultation.patient.name+' '+consultation.patient.family_name}}
+            </td>
+            <td>
+              {{ consultation.patient.parent.name+' '+consultation.patient.parent.profile.family_name}}
+            </td>
+            <td>
+              {{ consultation.patient.parent.telephone}}
+            </td>
+            <td>
+              {{consultation.date}}
+            <td>
+              <button class="btn btn-danger" style="width: 80px; height: 40px;" (click)="delete_consultation_tdah(consultation.id)" >
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br /><br /><br />
+    <div class=" d-flex justify-content-between mb-4">
+      <h3> جدول مواعيد إختبارات التوحد</h3>
+      <button *ngIf="patient!=undefined" class="btn btn-primary float-end"  data-bs-target="#formAddUser" data-bs-toggle="modal" > إضافة موعد</button>
+
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>اسم و لقب الطفل</th>
+            <th>اسم و لقب الولي</th>
+            <th>رقم هاتف الولي</th>
+            <th>تاريخ الموعد</th>
+            <th>حذف الموعد</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let consultation of autisteconsultations; let i = index">
+          <tr >
+            <td>
+             {{ consultation.patient.name+' '+consultation.patient.family_name}}
+            </td>
+            <td>
+              {{ consultation.patient.parent.name+' '+consultation.patient.parent.profile.family_name}}
+            </td>
+            <td>
+              {{ consultation.patient.parent.telephone}}
+            </td>
+            <td>
+              {{consultation.date}}
+            <td>
+             <button class="btn btn-danger" style="width: 80px; height: 40px;" (click)="delete_consultation(consultation.id)" >
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+    <form *ngIf="patientelement!=null" #addUserForm aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="formAddUser"  [formGroup]="FormGroup"
+    tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header w-100">
+          <h5 class="modal-title text-center text-danger" id="exampleModalLabel"></h5>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+        </div>
+        <div class="modal-body">
+  <div class="row">
+  <label class="col-sm-4 col-lg-3 col-form-label text-center"
+  for="name">إسم و لقب الطفل :</label>
+  <div class="col-sm-8 col-lg-9">
+  <label class="col-sm-4 col-lg-2 col-form-label text-center"
+  for="name">{{patient.name+' '+ patient.family_name}} </label>
+  </div>
+  </div>
+  <div class="row">
+  <label class="col-sm-6 col-lg-3 col-form-label text-center"
+  for="name">إسم و لقب الولي :</label>
+  <div class="col-sm-6 col-lg-9">
+  <label class="col-sm-6 col-lg-2 col-form-label text-center"
+  for="name">{{patient.parent.name+' '+ patient.parent.profile.family_name}}  </label>
+  </div>
+  </div>
+
+
+  <div class="row">
+  <label class="col-sm-4 col-lg-3 col-form-label text-center"
+  for="name">إختر موعد :</label>
+  <div class="col-sm-8 col-lg-9">
+  <input type="datetime-local" data-date-inline-picker="true" formControlName="date" />
+  </div>
+  </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button" style="width: 100px; height: 40px;">إغلاق</button>
+          <button class="btn btn-primary" (click)="createconsultation()" style="width: 130px; height: 40px;">إضافة موعد</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+</ng-container>

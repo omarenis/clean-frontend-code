@@ -1,1 +1,143 @@
-<p>user works!</p>
+<h1></h1>
+<form [formGroup]="formGroup">
+  <section class=" h-custom gradient-custom-2 d-flex justify-content-center mb-5" >
+    <div class="container py-3">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="back d-flex justify-content-end ">
+            <button routerLink="/dashboard/Users" >رجوع<i class="bi bi-arrow-return-left"></i></button>
+          </div>
+          <div   class="card card-registration card-registration-2" >
+
+                <h3 class="fw-normal mb-4 mt-4 text-center" style="color: #588ADB;">{{displayed_form==='school'?'إضافة روضة':(displayed_form === 'super_doctor' ? ' إضافة طبيب أول' :(displayed_form === 'doctor' ? 'إضافة طبيب': 'إضافة مربي') )}}</h3>
+
+                  <div class="d-flex flex-wrap justify-content-around px-5 text-justify">
+
+
+                        <div class="col-md-5 mb-4 pb-2">
+
+                            <div class=" ">
+                              <label class="form-label" for="form3Examplev2">{{displayed_form==='school'? 'إسم المدرسة' :'الإسم'}}</label>
+                              <input type="text" class="form-control form-control-lg" formControlName="name" id="name" name="name"/>
+
+                            </div>
+
+                          </div>
+
+                      <div class="col-md-5 mb-4 pb-2" *ngIf="displayed_form!=='school'">
+                        <div class=" ">
+                          <label class="form-label text-justify" for="form3Examplev2">اللقب</label>
+                          <input type="text"  class="form-control form-control-lg" formControlName="family_name" id="family_name" name="family_name"/>
+
+                        </div>
+
+                      </div>
+
+
+
+
+                        <div class="col-md-5 mb-4 pb-2">
+
+                            <div class=" ">
+                              <label class="form-label text-justify" for="form3Examplev3">رقم الهاتف</label>
+                              <input type="number" class="form-control form-control-lg" formControlName="telephone" id="telephone" name="telephone"/>
+
+                            </div>
+
+                          </div>
+                    <div class="col-md-5 mb-4 pb-2">
+                      <div class=" ">
+                        <label class="form-label" for="form3Examplev4">البريد اﻹلكتروني</label>
+                        <input  class="form-control form-control-lg" formControlName="email" id="email" name="email" type="text"/>
+
+                      </div>
+                    </div>
+                    <div *ngIf="displayed_form==='doctor'" class="col-md-5 mb-4 pb-2">
+                      <div class=" ">
+                        <label class="form-label" for="login_number">اﻹختصاص</label>
+                        <input type="text"  class="form-control form-control-lg"  formControlName="speciality" id="speciality" name="speciality"/>
+
+                      </div>
+                    </div>
+
+
+                      <div class="col-md-5 mb-4 pb-2">
+                        <div class=" ">
+                          <label class="form-label" for="form3Examplev4"> إختر البلد</label>
+                          <select (click)="choicecountry()" [(ngModel)]="country" class="select form-select form-control-lg " formControlName="country" id="country" >
+                            <option  value="" hidden>البلد</option>
+                            <option value="tunisie"  style="min-height: 300px;" >تونس</option>
+                            <option  value="algerie"  style="min-height: 300px; " >الجزائر</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-5 mb-2 pb-4">
+                        <label class="form-label" for="form3Examplev4">إختر الولاية</label>
+                        <select [(ngModel)]="selectedOption" (click)="states()"  class="select form-select form-control-lg " formControlName="state" id="state" >
+                          <option  value="" hidden>الولاية</option>
+                          <option  *ngFor="let state of state" [value]="state.governorate" style="min-height: 300px;">{{state.governorate}}</option>
+                        </select>
+                      </div>
+                      <div  *ngIf="!nodelegation"  class="col-md-5 mb-4 pb-2">
+                        <div class=" ">
+                          <label class="form-label" >المعتمدية</label>
+                          <select  (click)="delegation()" class="select form-select form-control-lg " formControlName="delegation" id="delegation">
+                            <option  *ngFor="let delegation of delegationoption"  style="min-height: 300px;">{{delegation.delegation}}</option>
+                          </select>
+                        </div>
+
+                      </div>
+                      <div class="col-md-5 mb-4 pb-2">
+
+                        <div class=" ">
+                          <label class="form-label" for="form3Examplev3">الترقيم البريدي</label>
+                          <input type="number"  formControlName="zip_code" id="zip_code" class="form-control form-control-lg" maxlength="4"/>
+
+                        </div>
+
+                      </div>
+                      <div class="col-md-5 mb-4 pb-2">
+                        <div class=" ">
+                          <label class="form-label" for="login_number">رقم الدخول</label>
+                          <input type="text"  class="form-control form-control-lg" formControlName="login_number" id="login_number" name="login_number"/>
+
+                        </div>
+                      </div>
+
+                      <div class="col-md-5 mb-4 pb-2">
+                        <div class=" ">
+                          <label class="form-label" for="form3Examplev4">كلمة السر</label>
+                          <div class="d-flex">
+                            <input type="password" class="form-control form-control-lg"   formControlName="password" id="password"  style="border-radius: 5px;" #passwordField>
+                            <button type="button"  (click)="togglePassword(passwordField)" style="border: none;background-color: none">
+                              <i  class="bi bi-eye" *ngIf="showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                              <i  class="bi bi-eye-slash" *ngIf="!showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                             </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-5 mb-4 ">
+                        <div class=" ">
+                          <label class="form-label" for="form3Examplev4" [ngStyle]="{'color': isColorRed ? 'black' : 'red'}">تأكيد كلمة السر</label>
+                          <div class="d-flex">
+                            <input type="password" class="form-control form-control-lg"   formControlName="confirmPassword" id="confirmPassword"  style="border-radius: 5px;" #confirmPassword>
+                            <button type="button"  (click)="togglePassword(confirmPassword)" style="border: none;background-color: none">
+                              <i  class="bi bi-eye" *ngIf="showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                              <i  class="bi bi-eye-slash" *ngIf="!showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                             </button>
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
+                  <div class="next d-flex justify-content-center ">
+                  <button type="button" (click)="add_user($event)">إضافة</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  </section>
+  </form>

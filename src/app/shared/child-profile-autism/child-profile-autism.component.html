@@ -1,0 +1,579 @@
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="back d-flex justify-content-end ">
+      <button routerLink="/dashboard/Children" >رجوع<i class="bi bi-arrow-return-left"></i></button>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="assets/img/pngwing.com.png" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{autiste?.name+' '+ autiste?.family_name}}</h5>
+<ng-container  *ngIf="type_user==='parent'">
+            <div class="d-flex justify-content-center mb-2">
+              <button  *ngIf="autiste?.supervisor==null &&  autiste?.sick===true &&  autiste?.saved==true" class=" float-end" (click)="getdoctors()"
+               style="width: 120px; height: 40px; background-color: #0d6efd; color: #fff; border-radius: 5px;border: none;"
+              data-bs-target="#formAddUser"
+              data-bs-toggle="modal">تعيين طبيب</button>
+            </div>
+
+
+<div *ngIf="autiste?.score_father==0 && autiste?.saved==false">
+<p class="text-danger"><i class="bi bi-exclamation-circle-fill mx-1"></i>تم اجراء الاستبيان لهذا الطفل من  قبل الأم فقط </p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button"  (click)="saveItem(autiste)"  class="btn btn-outline-primary " style="width: 160px;height: 40px;">اكمال اجراء الاختبار</button>
+      <!--<button type="button" class="btn btn-outline-primary ms-1">تعيين طبيب</button>-->
+            </div>
+          </div>
+          <div *ngIf="autiste?.score_mother==0 && autiste?.saved==false">
+            <p class="text-danger"><i class="bi bi-exclamation-circle-fill mx-1"></i>تم اجراء الاستبيان لهذا الطفل من  قبل الأب فقط </p>
+                        <div class="d-flex justify-content-center mb-2">
+                          <button type="button" (click)="saveItem(autiste)"  class="btn btn-outline-primary " style="width: 160px;height: 40px;">اكمال اجراء الاختبار</button>
+                  <!--<button type="button" class="btn btn-outline-primary ms-1">تعيين طبيب</button>-->
+                        </div>
+                      </div>
+                    </ng-container>
+<ng-container *ngIf="type_user==='doctor'">
+  <div class="d-flex justify-content-center mb-2">
+    <input routerLink="/dashboard/consultation" (click)="save_patient_to_appointement(autiste)" type="button" class="btn btn-outline-primary ms-1" value="حجز موعد ">
+  </div>
+</ng-container>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="d-flex justify-content-center my-3 text-primary"> ملف الطفل</h5>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">الإسم و اللقب</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{autiste?.name+' '+ autiste?.family_name}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">تاريخ الولادة</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{autiste?.birthdate}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">الجنس</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{autiste?.gender}}</p>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+        <ng-container *ngIf="type_user==='doctor'">
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                  <h5 h5 class="d-flex justify-content-center my-3 text-primary">النتائج</h5>
+
+                </div>
+                <div class="container accordion mb-3" id="accordionPanelsStayOpenExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">{{FirstQautiste.type_parent == 'mother' ? 'الإستبيان الخاص بالام ('+autiste.score_mother+' نقطة)' : 'الإستبيان الخاص بالأب ('+autiste.score_father+' نقطة)'}}</button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                      <div class="accordion-body">
+
+
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل ينزعج طفلك من ضجيج الحياة اليومية؟
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.annoyed_by_daily_noise : SecondQautiste.annoyed_by_daily_noise}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل ُيريك طفلك الأشياء بأن يجلبها لك أو يحملها لك لكى تراها- ليس من اجل المساعدة- ولكن لمجرد المشاركة ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.bring_smth_to_show : SecondQautiste.bring_smth_to_show}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يهتم طفلك بالأطفال الآخرين ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.cares_abt_other_children : SecondQautiste.cares_abt_other_children}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            إذا حدث شيئا جديدا، هل ينظر طفلك في وجهك ليرى كيف تشعر حيال ذلك؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.check_parent_reaction : SecondQautiste.check_parent_reaction}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحب طفلك التسلق على الأشياء؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.climbing_things : SecondQautiste.climbing_things}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحاول طفلك تقليد ما تفعله؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.imitate_parent_action : SecondQautiste.imitate_parent_action}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            إذا كنت تشير إلى شيء ما في الغرفة، هل ينظر طفلك إلى ذلك الشيئ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.looks_at_pointed_item : SecondQautiste.looks_at_pointed_item}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحب طفلك النشاط الحركي؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.loves_dynamic_activities : SecondQautiste.loves_dynamic_activities}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحاول طفلك أن يجعلك تراقبه ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.make_parent_watch : SecondQautiste.make_parent_watch}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل ينظر طفلك في عينك عندما تتحدث إليه ، أوتلعب معه ، أو عند تغيير ملابسه ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.makes_eye_contact : SecondQautiste.makes_eye_contact}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يشير طفلك بإصبع واحد السبابة لكي يسأل عن شيء أو للحصول على مساعدة ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.point_to_get_assistance : SecondQautiste.point_to_get_assistance}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يشير طفلك بإصبع واحد السبابة ليظهر لك مايثير اهتمامه؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.point_to_show_smth : SecondQautiste.point_to_show_smth}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل سبق لك أن تساءلت عما إذا كان طفلك أصم؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.possibly_deaf : SecondQautiste.possibly_deaf}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يتظاهر طفلك أثناء اللعب ليجعلك تعتقد أنه يمثل دور ما ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.pretending_playing : SecondQautiste.pretending_playing}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يستجيب طفلك عند مناداته باسمه / اسمها؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.response_to_his_name : SecondQautiste.response_to_his_name}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            عندما تبتسم لطفلك، هل يبادلك الابتسامة ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.smiles_back : SecondQautiste.smiles_back}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            عندما تلتفت برأسك وتنظر أو تحدق في شيئ ما ، هل يلتفت طفلك وينظر حوله ليرى ما تنظر إليه ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.turn_head_like_parent : SecondQautiste.turn_head_like_parent}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل طفلك يفهم عندما تقول له أن يفعل شيئ ما ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.understand_assignments : SecondQautiste.understand_assignments}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحرك طفلك أصابعه حركات غير عادية قرب عيونه؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.unusual_moves_next_to_eyes : SecondQautiste.unusual_moves_next_to_eyes}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل طفلك يستطيع المشي ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{FirstQautiste.type_parent == 'mother' ? FirstQautiste.walks : SecondQautiste.walks}}</p>
+                              </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">{{SecondQautiste.type_parent == 'mother' ? 'الإستبيان الخاص بالام ('+autiste.score_mother+' نقطة)' : 'الإستبيان الخاص بالأب ('+autiste.score_father+' نقطة)'}}</button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+
+                      <div class="accordion-body">
+
+
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل ينزعج طفلك من ضجيج الحياة اليومية؟
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.annoyed_by_daily_noise : FirstQautiste.annoyed_by_daily_noise}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل ُيريك طفلك الأشياء بأن يجلبها لك أو يحملها لك لكى تراها- ليس من اجل المساعدة- ولكن لمجرد المشاركة ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.bring_smth_to_show : FirstQautiste.bring_smth_to_show}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يهتم طفلك بالأطفال الآخرين ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.cares_abt_other_children : FirstQautiste.cares_abt_other_children}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            إذا حدث شيئا جديدا، هل ينظر طفلك في وجهك ليرى كيف تشعر حيال ذلك؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.check_parent_reaction : FirstQautiste.check_parent_reaction}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحب طفلك التسلق على الأشياء؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.climbing_things : FirstQautiste.climbing_things}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحاول طفلك تقليد ما تفعله؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.imitate_parent_action : FirstQautiste.imitate_parent_action}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            إذا كنت تشير إلى شيء ما في الغرفة، هل ينظر طفلك إلى ذلك الشيئ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.looks_at_pointed_item : FirstQautiste.looks_at_pointed_item}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحب طفلك النشاط الحركي؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.loves_dynamic_activities : FirstQautiste.loves_dynamic_activities}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحاول طفلك أن يجعلك تراقبه ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.make_parent_watch : FirstQautiste.make_parent_watch}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل ينظر طفلك في عينك عندما تتحدث إليه ، أوتلعب معه ، أو عند تغيير ملابسه ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.makes_eye_contact : FirstQautiste.makes_eye_contact}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يشير طفلك بإصبع واحد السبابة لكي يسأل عن شيء أو للحصول على مساعدة ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.point_to_get_assistance : FirstQautiste.point_to_get_assistance}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يشير طفلك بإصبع واحد السبابة ليظهر لك مايثير اهتمامه؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.point_to_show_smth : FirstQautiste.point_to_show_smth}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل سبق لك أن تساءلت عما إذا كان طفلك أصم؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.possibly_deaf : FirstQautiste.possibly_deaf}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يتظاهر طفلك أثناء اللعب ليجعلك تعتقد أنه يمثل دور ما ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.pretending_playing : FirstQautiste.pretending_playing}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يستجيب طفلك عند مناداته باسمه / اسمها؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.response_to_his_name : FirstQautiste.response_to_his_name}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            عندما تبتسم لطفلك، هل يبادلك الابتسامة ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.smiles_back : FirstQautiste.smiles_back}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            عندما تلتفت برأسك وتنظر أو تحدق في شيئ ما ، هل يلتفت طفلك وينظر حوله ليرى ما تنظر إليه ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.turn_head_like_parent : FirstQautiste.turn_head_like_parent}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل طفلك يفهم عندما تقول له أن يفعل شيئ ما ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.understand_assignments : FirstQautiste.understand_assignments}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل يحرك طفلك أصابعه حركات غير عادية قرب عيونه؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.unusual_moves_next_to_eyes : FirstQautiste.unusual_moves_next_to_eyes}}</p>
+                              </div>
+
+                        </div>
+                        <div class="question card  d-flex flex-row mb-3">
+                          <div class="col-8">
+                            هل طفلك يستطيع المشي ؟
+
+                          </div>
+                          <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                            <p class="col-2 d-flex justify-content-center">{{SecondQautiste.type_parent == 'mother' ? SecondQautiste.walks : FirstQautiste.walks}}</p>
+                              </div>
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<form  #addUserForm aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="formAddUser"
+tabindex="-1">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header w-100">
+      <h5 class="modal-title text-center text-danger" id="exampleModalLabel"></h5>
+      <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>إسم ولقب الطبيب</th>
+              <th>رقم الطبيب</th>
+              <th>الولاية</th>
+              <th>المعتمدية</th>
+              <th>تعيين الطبيب</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let doctor of doctors; let i = index">
+            <tr >
+              <td>
+               {{ doctor.name+' '+doctor.profile.family_name}}
+              </td>
+              <td>
+                {{ doctor.telephone}}
+              </td>
+              <td>
+                {{ doctor.localisation.state}}
+
+              </td>
+              <td>
+                {{ doctor.localisation.delegation}}
+              <td>
+                <input type="button" class="btn btn-primary" value=" تعيين" (click)="addSupervise(doctor.profile.id,$event)">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</form>
+

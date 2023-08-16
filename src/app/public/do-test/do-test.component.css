@@ -1,0 +1,125 @@
+.part1{
+  background: rgb(67,167,223);
+  background: linear-gradient(360deg, rgba(67,167,223,0.20220588235294112) 0%, rgba(255,255,255,1) 100%);
+}
+
+
+.do{
+  box-shadow: 0 0 5pt 2pt rgb(226, 225, 225,0.308);
+}
+
+h5
+{
+  color: #588ADB;
+}
+.btn2
+{
+  border: 2px solid #6c6c6c;
+  border-radius: 30px;
+  margin-left: 20px;
+ color: #6c6c6c;
+ background-color: #fff;
+ display: inline-block;
+ text-align: center;
+ transition: all 0.5s;
+ cursor: pointer;
+ margin: 5px;
+}
+.btn2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.btn2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: -17px;
+  left: -10px;
+  transition: 0.5s;
+}
+.btn2:hover span {
+  padding-left: 25px;
+}
+.btn2:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
+
+
+
+.btn2:hover{
+  background-color: #d6d6d6;
+}
+.btn1 {
+  border: none;
+  background-color: #43A7DF;
+  color: white;
+  border-radius: 30px;
+  margin-left: 20px;
+  transition: background 0.5s;
+}
+
+.btn1:hover{
+  background-color: #2e6c90;
+  color: #fff;
+}
+@media only screen and (max-width: 650px) {
+
+  .part1 img{
+    display: none;
+  }
+  .btn1 {
+    font-size : small;
+
+    border: none;
+    background-color: #43A7DF;
+    color: white;
+    border-radius: 30px;
+    margin-left: 20px;
+    transition: background 0.5s;
+  }
+
+  .btn1:hover{
+    background-color: #2e6c90;
+    color: #fff;
+  }
+  .btn2
+{
+  font-size : small;
+  border: 2px solid #6c6c6c;
+  border-radius: 30px;
+  margin-left: 20px;
+ color: #6c6c6c;
+ background-color: #fff;
+ display: inline-block;
+ text-align: center;
+ transition: all 0.5s;
+ cursor: pointer;
+ margin: 5px;
+}
+.btn2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.btn2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: -17px;
+  left: -10px;
+  transition: 0.5s;
+}
+.btn2:hover span {
+  padding-left: 25px;
+}
+.btn2:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
+}

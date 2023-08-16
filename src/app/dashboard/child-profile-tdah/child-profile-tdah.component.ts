@@ -17,7 +17,7 @@ export class ChildProfileTdahComponent implements OnInit {
   userId !: number;
   data: any={};
   parent !: Person;
-  patient !: Patient;
+  patient !: any;
   parentpatient:any;
 
   constructor(private service: AbstractRestService<Patient>, private secureStorageService: SecureStorageService, private router: Router,

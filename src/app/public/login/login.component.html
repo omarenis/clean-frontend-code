@@ -6,11 +6,11 @@
           <div class="row justify-content-center">
             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
               <form id="layoutAuthentication">
-                <div class="layoutAuthentication_content">
+                <div class="layoutAuthentication_content" [formGroup]="formGroup">
 
 
                   <p class="text-center h1 mb-5 mx-1 mx-md-4 mt-4" style="color: #588ADB;">تسجيل الدخول </p>
-                  <p class="alert alert-danger"></p>
+                  <p *ngIf="!validated" class="alert alert-danger">{{error}}</p>
 
 
                   <div class="d-flex flex-row align-items-center mb-4">
@@ -23,28 +23,34 @@
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="bi bi-lock-fill mt-2" style="font-size:x-large;"></i>
+                    <i class="bi bi-lock-fill mt-4" style="font-size:x-large;"></i>
                     <div class=" flex-fill mb-0 text-justify">
                       <label class="form-label text-justify" for="password">كلمةالسر</label>
-                      <div class="pass">
-                        <input type="password" class="form-control " formControlName="password" id="password"
-                               #passwordField>
-                        <button type="button" class="eye">
-                          <span class="icon-eye"></span>
-                          <span class="icon-eye-slash"></span>
-                        </button>
+                        <div class="d-flex">
+                          <input type="password" class="form-control "   formControlName="password" id="password"  style="border-radius: 5px;" #passwordField>
+                          <button type="button"  (click)="togglePassword(passwordField)" style="border: none;background-color: none">
+                            <i  class="bi bi-eye" *ngIf="showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                            <i  class="bi bi-eye-slash" *ngIf="!showPassword" id="togglePassword" style="margin-right: -30px; cursor: pointer;"></i>
+                           </button>
+
+                        </div>
+
+                      <div>
+
+
                       </div>
+
+
                     </div>
                   </div>
                   <div class="d-flex justify-content-center ">
-                    <button type="submit" class=" btn-light my-2"
+                    <button type="submit" class=" btn-light my-2"  [disabled]="formGroup.invalid" (click)="submit($event)"
                             style="background-color: #43A7DF; color: white ;border: none; height: 40px;width: 120px;border-radius: 5px;">
                       الدخول
                     </button>
                   </div>
                   <div class="d-flex flex-column align-items-center ">
-                    <a class="nav-link justify-content-center" routerLink="/signup">انشاء حساب</a>
-                    <a class="justify-content-center">هل نسيت كلمة السر ؟</a>
+                    <a class=" justify-content-center text-primary" routerLink="/public/Signup">انشاء حساب</a>
                   </div>
                 </div>
               </form>
@@ -60,3 +66,4 @@
     </div>
   </div>
 </div>
+

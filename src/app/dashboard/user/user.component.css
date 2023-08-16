@@ -1,0 +1,65 @@
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.card{
+  padding: 10px;
+}
+.next{
+  margin-left: 20px;
+  margin-bottom: 20Px;
+}
+.next button {
+  background-color: #43A7DF;
+  color: white ;
+  transition: 0.3s;
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+.next button:hover{
+  color: white;
+  background: #3178a1;
+
+}
+.back button {
+  background-color: #43A7DF;
+  color: white ;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+.back button:hover{
+  color: white;
+  background: #3178a1;
+}
+.back  button  i.bi{
+margin-right: 5px;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+  select {
+    width: 400px;
+}
+
+}
+@media only screen and (max-width: 500px) {
+  select {
+    width: 340px;
+}
+
+}
+@media only screen and (max-width: 420px) {
+  select {
+    width: 270px;
+}
+
+}

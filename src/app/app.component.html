@@ -1,61 +1,62 @@
-<header>
+<header >
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top d-flex p-0">
     <div class="container-fluid align-items-center p-0">
-      <a class="navbar-brand d-lg-none d-sm-block">
-        <img class="" ngSrc="assets/img/efhamni logo vf.png"
-             alt="Responsive image"
-             [height]="200" [width]="300" style="cursor: pointer;">
+      <a class="navbar-brand d-lg-block d-sm-block">
+        <img class="img-fluid" ngSrc="assets/img/efhamni logo vf.png"
+             alt="Responsive image" routerLink="/public"
+             [height]="125" [width]="200"  style="cursor: pointer;">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
               aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse d-lg-flex justify-content-lg-between align-items-lg-center w-100 p-0"
+      <div class="collapse navbar-collapse d-lg-flex justify-content-lg-between align-items-lg-center w-100 p-0
+ "
            id="navbarText">
-        <a class="d-lg-block d-none">
-          <img class="img-fluid" ngSrc="assets/img/efhamni_logo.png" alt="Responsive image"
-               [height]="125" [width]="200" style="cursor: pointer;" priority="auto">
-        </a>
-        <ul class="navbar-nav mx-auto">
+
+        <ul class="navbar-nav mx-auto d-flex justify-content-center align-items-center">
           <li class="nav-item ms-5">
-            <a class="nav-link active" aria-current="page" href="#">الرئيسية</a>
+            <a class="nav-link " routerLink="/public">الرئيسية</a>
           </li>
           <li class="nav-item ms-5">
-            <a class="nav-link">إجراء اختبار </a>
+            <a class="nav-link" routerLink="/public/Our_test">إجراء اختبار </a>
           </li>
           <li class="nav-item ms-5">
-            <a class="nav-link">أخر المستجدات</a>
+            <a class="nav-link" routerLink="/public/Last_news">أخر المستجدات</a>
           </li>
           <li class="nav-item ms-5">
-            <a class="nav-link " tabindex="-1" aria-disabled="true">من نحن</a>
+            <a class="nav-link " tabindex="-1" aria-disabled="true" routerLink="/public/Aboutus">من نحن</a>
           </li>
         </ul>
-        <ul class="d-flex mt-auto list-unstyled">
-          <li class="nav-link d-flex justify-content-around align-items-center " *ngIf="connected">
+        <ul class="d-flex mt-3 justify-content-center align-items-center list-unstyled">
+          <li class="nav-link d-flex justify-content-center align-items-center text-secondary ms-3" *ngIf="connected">
             <i class="bi bi-person-circle" style="font-size: 25px;"></i>
-            <div class="mx-3"><strong>ala mesfar</strong></div>
+            <div class="mx-3"><strong>{{family_name + ' '+name}}</strong></div>
             <div class="nav-item dropdown" style="list-style: none;">
-              <a class="nav-link " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link " id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                  aria-expanded="false"> <i class="bi bi-caret-down-fill"></i> </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
-                <li><a class="dropdown-item" href="#">فضاء المستعمل</a></li>
-                <li><a class="dropdown-item" href="#">تسجيل الخروج</a></li>
+                <li><a class="dropdown-item" [routerLink]='["/shared/Profile"]'>الملف الشخصي</a></li>
+                <li><a class="dropdown-item" [routerLink]= 'type_user === "parent"? ["/dashboard/Children"]:["/dashboard/Users"]'>فضاء المستعمل</a></li>
+                <li><a class="dropdown-item" (click)="logout()" style="cursor: pointer;">تسجيل الخروج</a></li>
               </ul>
             </div>
           </li>
-          <li class="nav-link ms-2">
-            <a type="button" class="signbtn  px-3 py-2">تسجيل الدخول </a>
-          </li>
+
         </ul>
+        <li class="nav-link  d-flex justify-content-center align-items-center ms-3" *ngIf="!connected">
+          <a type="button" routerLink="public/Login" class="signbtn  px-3 py-2">تسجيل الدخول </a>
+        </li>
       </div>
     </div>
   </nav>
 </header>
 <main>
 
+<router-outlet></router-outlet>
+
 </main>
-<footer class="footer-48201 mt-5">
+<footer *ngIf="router.url=='/public' " class="footer-48201 mt-5">
   <div class="container ">
     <div class="footerrow ">
 

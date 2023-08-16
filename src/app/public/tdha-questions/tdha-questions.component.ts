@@ -178,7 +178,7 @@ export class TdhaQuestionsComponent implements OnInit {
   id: any;
 
   constructor(private questionService: QuestionService, private router: Router, private activatedRoute: ActivatedRoute,
-              private patientService: AbstractRestService<Patient>, private secureStorageService: SecureStorageService, private toast: NgToastService) {
+              private patientService: AbstractRestService<Patient>, private secureStorageService: SecureStorageService,) {
   }
 
   ngOnInit(): void {
@@ -220,7 +220,7 @@ export class TdhaQuestionsComponent implements OnInit {
         subscriber.subscribe({
           next: async (response: Patient): Promise<void> => {
             console.log('responseresponseresponseresponseresponseresponseresponse', response)
-            this.toast.success({detail: "تمت العملية بنجاح", summary: 'تمت إضافة الطفل بالنجاح', duration: 5000});
+        //    this.toast.success({detail: "تمت العملية بنجاح", summary: 'تمت إضافة الطفل بالنجاح', duration: 5000});
             const userId = localStorage.getItem('userId');
             const access = localStorage.getItem('access');
             const refresh = localStorage.getItem('refresh');
@@ -240,9 +240,9 @@ export class TdhaQuestionsComponent implements OnInit {
               localStorage.setItem('family_name', family_name);
             }
             if (this.type_user == 'parent') {
-              await this.router.navigate(['/childlist']);
+              await this.router.navigate(['/dashboard/Children']);
             } else {
-              await this.router.navigate(['/studentlist']);
+              await this.router.navigate(['/dashboard/Children']);
 
             }
           }
@@ -250,7 +250,7 @@ export class TdhaQuestionsComponent implements OnInit {
       }
 
     } else {
-      await this.router.navigate([`/question/${this.type_user}/${this.step + 1}`]);
+      await this.router.navigate([`/public/Tdah_question/${this.type_user}/${this.step + 1}`]);
     }
   }
 
