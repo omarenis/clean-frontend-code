@@ -67,23 +67,7 @@ submit($event: Event): void{
       {
           url = '/dashboard/Users';
       }
-      // else if (response.profile.is_super_doctor == true)
-      // {
-      //     url = 'seconddoctorlist';
-      // }
-      // else if (response.type_user == 'school')
-      // {
-      //     url = 'teacherlist';
-      // }
-      // else if (response.type_user == 'teacher')
-      // {
-      //     url = 'studentlist';
-      // }
-      // else if (response.type_user == 'doctor' && response.profile.is_super_doctor == false)
-      // {
-      //     url = 'doctorpatientlist';
 
-      // }
 
 
       this.connection.setConnection({
